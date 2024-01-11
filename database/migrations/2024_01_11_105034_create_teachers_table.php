@@ -13,7 +13,7 @@ return new class extends Migration {
                 ->unique()
                 ->comment('Lehrerkürzel, z.B. "sed"');
             $table->foreignId('gender_id')
-                ->constrained('gender')
+                ->constrained('genders')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->date('entry');
