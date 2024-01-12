@@ -8,6 +8,8 @@
 
     <meta name="color-scheme" content="dark">
 
+    <link rel="stylesheet" href="{{ asset('css/baseStyle.css') }}">
+
     @vite([
     'resources/js/app.js',
     'resources/sass/app.scss',
