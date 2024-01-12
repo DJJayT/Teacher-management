@@ -25,7 +25,7 @@ class AssessmentTypeSeeder extends Seeder
         ];
         $assessmentTypes[] =[
             'id' => 3,
-            'name' => 'dienstliche Beurteilung',
+            'name' => 'Dienstliche Beurteilung',
             'created_at' => now(),
             'updated_at' => now()
         ];

@@ -18,7 +18,12 @@ class DatabaseSeeder extends Seeder
             StatusTypeSeeder::class,
             SalaryGradeSeeder::class,
             JobTitleSeeder::class,
-            GenderSeeder::class
+            GenderSeeder::class,
+            ProviderSeeder::class,
+            AreaSeeder::class,
+            SickTimeReasonSeeder::class,
+            ExemtionOffDutyReasonSeeder::class
+
         ]);
     }
 }
