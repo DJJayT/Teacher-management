@@ -9,6 +9,8 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'node_modules/jquery/dist/jquery.min.js',
+                'resources/css/Sidebar-Responsive-2-ResponsiveSideBar-2.css',
+                'resources/css/Sidebar-Responsive-2.css',
             ],
             refresh: true,
         }),

@@ -3,20 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') - EscapeTimez</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="{{ asset('js/utilities.js') }}"></script>
-    <script src="{{ asset('js/modal.js') }}"></script>
-
-    <link rel="stylesheet" href="{{ asset('css/baseStyle.css') }}">
 
     <meta name="color-scheme" content="dark">
 
     @vite([
     'resources/js/app.js',
     'resources/sass/app.scss',
-    'node_modules/jquery/dist/jquery.min.js?commonjs-entry'
+    'node_modules/jquery/dist/jquery.min.js?commonjs-entry',
+    'resources/css/Sidebar-Responsive-2-ResponsiveSideBar-2.css',
+    'resources/css/Sidebar-Responsive-2.css'
     ])
 
     @yield('extra-fonts')
