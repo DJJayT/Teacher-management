@@ -24,7 +24,9 @@
                 </div>
             </div>
             <div class="w-75 contentMargin">
-                @yield('extra-content')
+                <div class="container-fluid mt-5">
+                    @yield('extra-content')
+                </div>
             </div>
         </div>
     </div>
