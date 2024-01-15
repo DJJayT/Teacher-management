@@ -9,6 +9,10 @@ return new class extends Migration {
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname')
+                ->comment('Vorname des Lehrers');
+            $table->string('lastname')
+                ->comment('Nachname des Lehrers');
             $table->string('abbreviation')
                 ->unique()
                 ->comment('Lehrerkürzel, z.B. "sed"');

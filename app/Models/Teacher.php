@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Teacher extends Model
 {
     protected $fillable = [
+        'name',
         'abbreviation',
         'gender_id',
         'entry',
@@ -41,9 +44,9 @@ class Teacher extends Model
         return $this->hasOne(Gender::class);
     }
 
-    public function jobTitle(): HasOne
+    public function jobTitle(): BelongsTo
     {
-        return $this->hasOne(JobTitle::class);
+        return $this->belongsTo(JobTitle::class);
     }
 
     public function salaryGrade(): HasOne
@@ -51,9 +54,9 @@ class Teacher extends Model
         return $this->hasOne(SalaryGrade::class);
     }
 
-    public function status(): HasOne
+    public function status(): BelongsTo
     {
-        return $this->hasOne(StatusType::class);
+        return $this->belongsTo(StatusType::class, 'status_type_id');
     }
 
     public function lastAssessment(): HasOne
@@ -74,5 +77,14 @@ class Teacher extends Model
     public function trainings(): HasManyThrough
     {
         return $this->hasManyThrough(Training::class, TeacherTraining::class, 'teacher_id', 'id', 'id', 'training_id');
+    }
+
+    public function getAssessmentDeadline(): Carbon
+    {
+        if ($this->fixed_assessment_deadline) {
+            return $this->fixed_assessment_deadline;
+        }
+
+        return $this->expected_assessment_deadline;
     }
 }

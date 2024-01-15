@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.sidebar');
-})->name('home');
+Route::group([
+    'middleware' => 'guest',
+], function() {
+    Route::get('/login', [LoginController::class, 'index'])
+        ->name('login');
+    Route::post('/login', [LoginController::class, 'postLogin'])
+        ->name('login');
+});
+
+Route::group([
+    'middleware' => 'auth',
+], function() {
+    Route::get('', [TeacherController::class, 'index'])
+        ->name('home');
+
+    Route::get('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+});

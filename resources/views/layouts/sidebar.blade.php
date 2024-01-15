@@ -17,9 +17,17 @@
                             </a>
                         </li>
 
+
+                        <hr>
+                        <li class="nav-item">
+                            <a href="{{ route('logout') }}" class="nav-link px-0 align-middle">
+                                <i class="bi bi-box-arrow-right fs-4"></i>
+                                <span class="ms-1 d-none d-xl-inline">{{ __('Logout') }}</span>
+                            </a>
+                        </li>
                     </ul>
                     <div class="pb-4 d-none d-md-inline">
-                        Hier könnte Ihre Werbung stehen
+                        {{ auth()->user()->name }}
                     </div>
                 </div>
             </div>
