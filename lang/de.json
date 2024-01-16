@@ -215,9 +215,22 @@
     "Successfully logged in": "Erfolgreich angemeldet",
     "Successfully logged out": "Erfolgreich abgemeldet",
     "Error while logging in": "Fehler beim Anmelden",
-    "View Visited Trainings": "Übersicht Besuchte Fortbildungen",
+    "View visited Trainings": "Übersicht Besuchte Fortbildungen",
     "Teacher": "Lehrer",
     "History": "Historie",
-    "new Training entry": "neuer Fortbildungseintrag"
+    "new training entry": "neuer Fortbildungseintrag",
+    "Training entry": "Fortbildungseintrag",
+    "Training": "Fortbildung",
+    "area": "Bereich",
+    "provider": "Anbieter",
+    "from": "von",
+    "until": "bis",
+    "duration": "Dauer",
+    "create": "erstellen",
+    "save": "speichern",
+    "edit": "bearbeiten",
+    "close": "schließen",
+    "delete": "löschen",
+    "TrainingID": "FortbildungsID"
 
 }

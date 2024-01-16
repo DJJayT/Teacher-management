@@ -38,6 +38,10 @@ Route::get('/test', function() {
     return view('sickDays.SickDaysOverview');
 });
 
-Route::get('/test', function() {
+Route::get('/teacherTrainings', function() {
     return view('teacherTrainings.index');
+});
+
+Route::get('/testchr', function() {
+    return view('trainingEntry.index');
 });
