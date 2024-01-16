@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SickDaysController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TrainingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'guest',
-], function() {
+], function () {
     Route::get('/login', [LoginController::class, 'index'])
         ->name('login');
     Route::post('/login', [LoginController::class, 'postLogin'])
@@ -26,7 +28,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'auth',
-], function() {
+], function () {
     Route::get('', [TeacherController::class, 'index'])
         ->name('home');
 
@@ -34,14 +36,18 @@ Route::group([
         ->name('logout');
 });
 
-Route::get('/test', function() {
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'teacher/{id}',
+], function () {
+    Route::get('/trainings', [TrainingsController::class, 'teacherTrainings'])
+        ->name('teacher.trainings');
+
+    Route::get('/sickDays', [SickDaysController::class, 'teacherSickDays'])
+        ->name('teacher.sickDays');
+});
+
+Route::get('/test', function () {
     return view('sickDays.SickDaysOverview');
 });
 
-Route::get('/teacherTrainings', function() {
-    return view('teacherTrainings.index');
-});
-
-Route::get('/testchr', function() {
-    return view('trainingEntry.index');
-});

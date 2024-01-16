@@ -1,7 +1,9 @@
 @extends('layouts.sidebar')
+
 @section('extra-css')
     <link rel="stylesheet" href="/public/css/SickDaysOverview.css">
 @endsection
+
 @section('title')
     {{ __('Sick Days') }}
 @endsection

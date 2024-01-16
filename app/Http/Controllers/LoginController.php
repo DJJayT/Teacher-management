@@ -33,7 +33,7 @@ class LoginController extends Controller
     public function postLogin(LoginRequest $request): RedirectResponse
     {
         // If the validation fails, the user will be redirected to login with an error message
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('abbreviation', 'password');
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
             return redirect()

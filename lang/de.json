@@ -215,7 +215,7 @@
     "Successfully logged in": "Erfolgreich angemeldet",
     "Successfully logged out": "Erfolgreich abgemeldet",
     "Error while logging in": "Fehler beim Anmelden",
-    "View visited Trainings": "Übersicht Besuchte Fortbildungen",
+    "View visited trainings": "Übersicht besuchte Fortbildungen",
     "Teacher": "Lehrer",
     "History": "Historie",
     "new training entry": "neuer Fortbildungseintrag",
@@ -231,6 +231,8 @@
     "edit": "bearbeiten",
     "close": "schließen",
     "delete": "löschen",
-    "TrainingID": "FortbildungsID"
+    "TrainingID": "FortbildungsID",
+    "new training entry": "neuer Fortbildungseintrag",
+    "Abbreviation": "Kürzel"
 
 }

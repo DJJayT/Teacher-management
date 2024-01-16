@@ -11,7 +11,7 @@
             @include('alerts.default')
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-2">
         <ul class="list-group mt-5">
             @foreach($teachers as $teacher)
                 <li class="list-group-item d-flex justify-content-between">
@@ -32,10 +32,10 @@
                         </p>
                     </div>
                     <div class="managingButtons ms-2">
-                        <a href="#" class="btn btn-info">
+                        <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info">
                             <i class="bi bi-clipboard-check"></i> {{ __('Trainings') }}
                         </a>
-                        <a href="#" class="btn btn-info">
+                        <a href="{{ route('teacher.sickDays', ['id' => $teacher->id]) }}" class="btn btn-info">
                             <i class="bi bi-clock"></i> {{ __('Absences') }}
                         </a>
                         <a href="#" class="btn btn-primary">
@@ -49,4 +49,6 @@
             @endforeach
         </ul>
     </div>
+
+        {{ $teachers->links() }}
 @endsection

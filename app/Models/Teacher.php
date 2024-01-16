@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Teacher extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'abbreviation',
@@ -87,4 +91,9 @@ class Teacher extends Model
 
         return $this->expected_assessment_deadline;
     }
+
+    public function sickDays(): HasMany
+    {
+        return $this->hasMany(TeacherSickTime::class, 'teacher_id', 'id');
+        }
 }

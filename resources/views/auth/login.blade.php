@@ -21,8 +21,8 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="mb-2">
-                        <label for="email" class="form-label">{{ __('Email') }}</label>
-                        <input type="text" class="form-control" name="email" id="email" required>
+                        <label for="abbreviation" class="form-label">{{ __('Abbreviation') }}</label>
+                        <input type="text" class="form-control" name="abbreviation" id="abbreviation" required>
                     </div>
                     <div class="mb-1">
                         <label for="password" class="formlabel">{{ __('Password') }}</label>
@@ -33,7 +33,6 @@
                         <label class="form-check-label" for="remember">
                         {{ __('Remember me') }}
                     </div>
-
 
                     <button id="submit" type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                 </form>

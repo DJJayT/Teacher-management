@@ -8,7 +8,7 @@ class TeacherController
 {
     public function index()
     {
-        $teachers = Teacher::paginate(25);
+        $teachers = Teacher::orderBy('lastname')->paginate(15);
 
         return view('teacherOverview.index')
             ->with([

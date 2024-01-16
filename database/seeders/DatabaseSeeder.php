@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             ProviderSeeder::class,
             AreaSeeder::class,
             SickTimeReasonSeeder::class,
-            ExemtionOffDutyReasonSeeder::class
-
+            ExemtionOffDutyReasonSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
