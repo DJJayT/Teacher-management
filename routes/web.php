@@ -35,5 +35,9 @@ Route::group([
 });
 
 Route::get('/test', function() {
+    return view('sickDays.SickDaysOverview');
+});
+
+Route::get('/test', function() {
     return view('teacherTrainings.index');
 });

@@ -13,7 +13,6 @@
     @vite([
     'resources/js/app.js',
     'resources/sass/app.scss',
-    'node_modules/jquery/dist/jquery.min.js?commonjs-entry',
     'resources/css/Sidebar-Responsive-2-ResponsiveSideBar-2.css',
     'resources/css/Sidebar-Responsive-2.css'
     ])
