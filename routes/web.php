@@ -51,3 +51,7 @@ Route::get('/test', function () {
     return view('sickDays.SickDaysOverview');
 });
 
+Route::get('/testchr', function () {
+    return view('trainingEntry.index');
+});
+
