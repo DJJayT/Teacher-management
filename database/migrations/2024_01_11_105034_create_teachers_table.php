@@ -43,6 +43,7 @@ return new class extends Migration {
                 ->nullable();
             $table->foreignId('last_assessment_type_id')
                 ->comment('Art der letzten Beurteilung')
+                ->nullable()
                 ->constrained('assessment_types')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssessmentObstacle;
 use App\Models\AssessmentType;
 use App\Models\Gender;
 use App\Models\JobTitle;
@@ -110,6 +111,7 @@ class ModalController extends Controller
             'statuses' => StatusType::all(),
             'salaryGrades' => SalaryGrade::all(),
             'assessmentTypes' => AssessmentType::all(),
+            'assessmentObstacles' => AssessmentObstacle::all(),
         ])->render();
 
         return $modal;

@@ -19,4 +19,14 @@ class SickDaysController extends Controller
                 'sickDays' => $sickDays,
             ]);
     }
+
+    public function getSickDaysOfMonth($id, $month, $year): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $sickDays = Teacher::find($id)->sickDays()->get();
+
+        return view('sickDays.SickDaysOverview')
+            ->with([
+                'sickDays' => $sickDays,
+            ]);
+    }
 }
