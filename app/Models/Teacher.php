@@ -95,5 +95,10 @@ class Teacher extends Model
     public function sickDays(): HasMany
     {
         return $this->hasMany(TeacherSickTime::class, 'teacher_id', 'id');
-        }
+    }
+
+    public function getName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
 }
