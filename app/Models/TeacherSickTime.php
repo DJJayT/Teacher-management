@@ -23,6 +23,7 @@ class TeacherSickTime extends Model
     protected $casts = [
         'from' => 'date',
         'until' => 'date',
+        'certificate' => 'bool',
         'certificate_from' => 'date',
     ];
 

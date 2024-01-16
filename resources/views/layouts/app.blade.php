@@ -5,10 +5,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="color-scheme" content="dark">
 
     <link rel="stylesheet" href="{{ asset('css/baseStyle.css') }}">
+
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/utilities.js') }}"></script>
+    <script src="{{ asset('js/modal.js') }}"></script>
 
     @vite([
     'resources/js/app.js',

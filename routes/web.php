@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ModalController;
 use App\Http\Controllers\SickDaysController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TrainingsController;
@@ -46,6 +47,9 @@ Route::group([
     Route::get('/sickDays', [SickDaysController::class, 'teacherSickDays'])
         ->name('teacher.sickDays');
 });
+
+Route::post('/getModal/{modalId}/{additionalId?}', [ModalController::class, 'getModal'])
+    ->name('getModal');
 
 Route::get('/test', function () {
     return view('sickDays.SickDaysOverview');

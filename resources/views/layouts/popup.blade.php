@@ -9,8 +9,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary closeButton"
-                        data-dismiss="modal">{{ __('common.close') }}</button>
-                <button type="button" class="btn btn-primary submitButton">{{ __('common.confirm') }}</button>
+                        data-dismiss="modal">{{ __('Close') }}</button>
+                <button type="button" class="btn btn-primary submitButton">{{ __('Confirm') }}</button>
             </div>
         </div>
     </div>

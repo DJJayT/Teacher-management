@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssessmentType;
+use App\Models\Gender;
+use App\Models\JobTitle;
+use App\Models\SalaryGrade;
+use App\Models\StatusType;
+use App\Models\Teacher;
+use App\Responses\ModalResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use stdClass;
 
 class ModalController extends Controller
 {
 
     private array $modals = [
-        1 => 'getDeleteModal'
+        1 => 'getDeleteModal',
+        2 => 'getTeacherEditModal'
     ];
 
     /**
@@ -20,14 +27,14 @@ class ModalController extends Controller
      * @param int|null $additionalId
      * @return JsonResponse
      * @method POST
-     * @route /modal/{modalId}/{additionalId?}
+     * @route /getModal/{modalId}/{additionalId?}
      */
     public function getModal(int $modalId, int $additionalId = null)
     {
         if (!isset($this->modals[$modalId])) {
-            $modal = new stdClass();
-            $modal->title = __('common.error');
-            $modal->body = __('common.ressource_not_found');
+            $modal = new ModalResponse();
+            $modal->title = __('Server Error');
+            $modal->body = __('Modal not found');
             $modal->successHide = true;
             return response()->json(['modal' => $modal]);
         }
@@ -45,8 +52,8 @@ class ModalController extends Controller
     {
         $hasPermission = Auth::user()->can($permission);
         if (!$hasPermission) {
-            $modal->title = __('common.error');
-            $modal->body = __('common.no_permission');
+            $modal->title = __('Server Error');
+            $modal->body = __('You don\'t have the permission to do this');
             $modal->successHide = true;
             return false;
         }
@@ -63,8 +70,8 @@ class ModalController extends Controller
     private function checkIfSomethingFound($object, &$modal)
     {
         if (!$object) {
-            $modal->title = __('common.error');
-            $modal->body = __('common.something_went_wrong');
+            $modal->title = __('Internal Server Error');
+            $modal->body = __('Something went wrong');
             $modal->successHide = true;
             return false;
         }
@@ -81,8 +88,29 @@ class ModalController extends Controller
     private function getDeleteModal(): ModalResponse
     {
         $modal = new ModalResponse();
-        $modal->title = __('common.delete');
-        $modal->body = '<p class="text-muted">' . __('common.deletion_confirmation') . '</p>';
+        $modal->title = __('Delete');
+        $modal->body = '<p class="text-muted">' . __('Are you sure you want to delete this?') . '</p>';
+
+        return $modal;
+    }
+
+    private function getTeacherEditModal($teacherId): ModalResponse
+    {
+        $teacher = Teacher::find($teacherId);
+
+        $route = '';
+
+        $modal = new ModalResponse();
+        $modal->title = __('Edit Teacher');
+        $modal->body = view('teacherOverview.teacherForm', [
+            'teacher' => $teacher,
+            'route' => $route,
+            'genders' => Gender::all(),
+            'jobTitles' => JobTitle::all(),
+            'statuses' => StatusType::all(),
+            'salaryGrades' => SalaryGrade::all(),
+            'assessmentTypes' => AssessmentType::all(),
+        ])->render();
 
         return $modal;
     }

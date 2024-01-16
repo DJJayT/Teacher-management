@@ -4,6 +4,10 @@
     {{ __('Home') }}
 @endsection
 
+@section('extra-js')
+    <script src="{{ asset('js/teachersOverview.js') }}"></script>
+@endsection
+
 @section('extra-content')
     <div class="row mb-2">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
@@ -38,17 +42,19 @@
                         <a href="{{ route('teacher.sickDays', ['id' => $teacher->id]) }}" class="btn btn-info">
                             <i class="bi bi-clock"></i> {{ __('Absences') }}
                         </a>
-                        <a href="#" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary editTeacherButton"
+                                data-modalId="2" data-teacherId="{{ $teacher->id }}">
                             <i class="bi bi-pencil-fill"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger">
+                        </button>
+                        <button type="button" class="btn btn-danger deleteTeacherButton"
+                                data-modalId="1" data-teacherId="{{ $teacher->id }}">
                             <i class="bi bi-trash-fill"></i>
-                        </a>
+                        </button>
                     </div>
                 </li>
             @endforeach
         </ul>
     </div>
 
-        {{ $teachers->links() }}
+    {{ $teachers->links() }}
 @endsection

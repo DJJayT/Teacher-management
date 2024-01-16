@@ -232,7 +232,10 @@
     "close": "schließen",
     "delete": "löschen",
     "TrainingID": "FortbildungsID",
-    "new training entry": "neuer Fortbildungseintrag",
-    "Abbreviation": "Kürzel"
+    "Abbreviation": "Kürzel",
+    "You don't have the permission to do this": "Sie haben keine Berechtigung, dies zu tun",
+    "Something went wrong": "Etwas ist schief gelaufen",
+    "Are you sure you want to delete this?": "Sind Sie sicher, dass Sie dies löschen möchten?",
+    "Select your gender": "Wähle dein Geschlecht"
 
 }
