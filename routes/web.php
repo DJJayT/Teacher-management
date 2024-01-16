@@ -33,3 +33,7 @@ Route::group([
     Route::get('/logout', [LoginController::class, 'logout'])
         ->name('logout');
 });
+
+Route::get('/test', function() {
+    return view('teacherTrainings.index');
+});
