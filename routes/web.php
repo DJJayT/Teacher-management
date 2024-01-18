@@ -51,7 +51,7 @@ Route::group([
 Route::post('/getModal/{modalId}/{additionalId?}', [ModalController::class, 'getModal'])
     ->name('getModal');
 
-Route::get('/test', function () {
+Route::get('/sick', function () {
     return view('sickDays.SickDaysOverview');
 });
 
@@ -59,3 +59,4 @@ Route::get('/testchr', function () {
     return view('trainingEntry.index');
 });
 
+Route::get('/sickdaysmonth', [SickDaysController::class, 'getSickDaysOfMonth']);

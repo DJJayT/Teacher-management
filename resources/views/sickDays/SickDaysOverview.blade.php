@@ -1,105 +1,38 @@
 @extends('layouts.sidebar')
-
 @section('extra-css')
-    <link rel="stylesheet" href="/public/css/SickDaysOverview.css">
+    <link rel="stylesheet" href="{{ asset('css/SickDaysOverview.css') }}">
+    <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css"/>
 @endsection
-
 @section('title')
     {{ __('Sick Days') }}
 @endsection
-
 @section('extra-content')
-    <h1>Übersicht Krankheit</h1>
+    <h1>Krankheit - {{$teacher->getName()}}</h1>
 
-    <div class="container">
-        <div class="btn-element">
-            1.1.2023
-            Test
-        </div>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>2.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>3.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>4.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>5.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>6.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
-        <button class="btn-element">
-            <div class="btn-content">
-                <p>7.1.2023</p>
-                <p>Test</p>
-            </div>
-        </button>
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <input id='calendar'/>
+    <p id="selected-p"></p>
+
+    <script>
+        jSuites.calendar(document.getElementById('calendar'), {
+            type: 'year-month-picker',
+            format: 'MMM-YYYY',
+            validRange: ['2000-01-01', '2100-12-12'],
+            readonly: false,
+
+            onchange: function (instance, value) {
+                document.getElementById('selected-p').innerText = 'New value is: ' + value;
+
+                let callback;
+                const postData = JSON.parse()
+
+                utilities.postAjax('/sickdaysmonth', '01', callback, '');
+                console.log(callback);
+            }
+        });
+
+    </script>
+    <div class="row mb-2 sickDayList">
+        @include('sickDays.sickDaysList')
     </div>
-
-    <!-- <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Vom</th>
-            <th scope="col">Bis</th>
-            <th scope="col">Unterrichtstage</th>
-            <th scope="col">Gesamttage</th>
-            <th scope="col">Grund</th>
-            <th scope="col">Bescheinigung liegt vor</th>
-            <th scope="col">Bescheinigung ab</th>
-            <th scope="col">Krankenhaus</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        </tbody>
-    </table>
-    -->
-
 @endsection

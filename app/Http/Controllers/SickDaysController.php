@@ -12,10 +12,12 @@ class SickDaysController extends Controller
 
     public function teacherSickDays($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $sickDays = Teacher::find($id)->sickDays()->get();
+        $teacher = Teacher::find($id);
+        $sickDays = $teacher->sickDays()->get();
 
         return view('sickDays.SickDaysOverview')
             ->with([
+                'teacher' => $teacher,
                 'sickDays' => $sickDays,
             ]);
     }

@@ -12,6 +12,11 @@
     <div class="row mb-2">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
             <h2>{{ __('List of teachers') }}</h2>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-outline-success">
+                    <i class="bi bi-plus-circle"></i> {{ __('Create new teacher') }}
+                </button>
+            </div>
             @include('alerts.default')
         </div>
     </div>
