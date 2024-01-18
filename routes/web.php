@@ -44,6 +44,9 @@ Route::group([
     Route::get('/trainings', [TrainingsController::class, 'teacherTrainings'])
         ->name('teacher.trainings');
 
+    Route::get('/trainingEntry', [TrainingsController::class, 'trainingEntry'])
+        ->name('teacher.trainingEntry');
+
     Route::get('/sickDays', [SickDaysController::class, 'teacherSickDays'])
         ->name('teacher.sickDays');
 });
@@ -55,8 +58,8 @@ Route::get('/sick', function () {
     return view('sickDays.SickDaysOverview');
 });
 
-Route::get('/testchr', function () {
-    return view('trainingEntry.index');
-});
+Route::get('/alltrainings', [TrainingsController::class, 'allTrainings']);
+
+Route::get('/training', [TrainingsController::class, 'training']);
 
 Route::get('/sickdaysmonth', [SickDaysController::class, 'getSickDaysOfMonth']);

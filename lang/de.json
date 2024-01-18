@@ -221,8 +221,8 @@
     "new training entry": "neuer Fortbildungseintrag",
     "Training entry": "Fortbildungseintrag",
     "Training": "Fortbildung",
-    "area": "Bereich",
-    "provider": "Anbieter",
+    "Area": "Bereich",
+    "Provider": "Anbieter",
     "from": "von",
     "until": "bis",
     "duration": "Dauer",
@@ -259,5 +259,11 @@
     "Select the status": "Wählen Sie den Status",
     "Select the last assessment type": "Wählen Sie den letzten Bewertungstyp",
     "Select the assessment obstacle": "Wählen Sie das Bewertungshindernis",
-    "Select the next assessment type": "Wählen Sie den nächsten Bewertungstyp"
+    "Select the next assessment type": "Wählen Sie den nächsten Bewertungstyp",
+    "All trainings": "Alle Fortbildungen",
+    "new training": "neue Fortbildung",
+    "Title": "Titel",
+    "search term": "Suchbegriff",
+    "search": "Suche"
+
 }
