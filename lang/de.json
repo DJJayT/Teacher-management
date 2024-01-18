@@ -221,8 +221,8 @@
     "new training entry": "neuer Fortbildungseintrag",
     "Training entry": "Fortbildungseintrag",
     "Training": "Fortbildung",
-    "Area": "Bereich",
-    "Provider": "Anbieter",
+    "area": "Bereich",
+    "provider": "Anbieter",
     "from": "von",
     "until": "bis",
     "duration": "Dauer",
@@ -264,6 +264,12 @@
     "new training": "neue Fortbildung",
     "Title": "Titel",
     "search term": "Suchbegriff",
-    "search": "Suche"
-
+    "search": "Suche",
+    "Teacher successfully deleted": "Lehrer erfolgreich gelöscht",
+    "Left at :date": "Verlassen am :date",
+    "Create new teacher": "Neuen Lehrer erstellen",
+    "Edit teacher": "Lehrer bearbeiten",
+    "Abbreviation already exists": "Kürzel existiert bereits",
+    "Teacher successfully created": "Lehrer erfolgreich erstellt",
+    "Teacher successfully updated": "Lehrer erfolgreich aktualisiert"
 }

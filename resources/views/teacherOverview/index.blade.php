@@ -12,8 +12,8 @@
     <div class="row mb-2">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
             <h2>{{ __('List of teachers') }}</h2>
-            <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-outline-success">
+            <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-outline-success createTeacherButton" data-modalId="3">
                     <i class="bi bi-plus-circle"></i> {{ __('Create new teacher') }}
                 </button>
             </div>
@@ -28,17 +28,25 @@
                         <p class="m-0 name">
                             {{ $teacher->jobTitle->name }} {{ $teacher->firstname }} {{ $teacher->lastname }}
                             ({{ $teacher->abbreviation }})
+
                         </p>
+                        @if($teacher->exit != null)
+                            <div class="badge bg-danger">
+                                {{ __('Left at :date', ['date' => $teacher->exit->format('d.m.Y')]) }}
+                            </div>
+                        @endif
                         <p class="text-muted">
                             {{ $teacher->status->name }}
                         </p>
-                        <p @class([
+                        @if($teacher->exit == null)
+                            <p @class([
                             'mb-0',
                             'text-warning' => $teacher->getAssessmentDeadline()->clone()->subYear()->isPast(),
                             'text-danger' => $teacher->getAssessmentDeadline()->clone()->subMonthsNoOverflow(6)->isPast()
                         ])>
-                            {{ __('Next assessment at :Date', ['Date' => $teacher->getAssessmentDeadline()->format('d.m.Y')]) }}
-                        </p>
+                                {{ __('Next assessment at :Date', ['Date' => $teacher->getAssessmentDeadline()->format('d.m.Y')]) }}
+                            </p>
+                        @endif
                     </div>
                     <div class="managingButtons ms-2">
                         <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info">

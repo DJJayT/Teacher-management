@@ -18,7 +18,8 @@ class ModalController extends Controller
 
     private array $modals = [
         1 => 'getDeleteModal',
-        2 => 'getTeacherEditModal'
+        2 => 'getTeacherEditModal',
+        3 => 'getTeacherCreateModal',
     ];
 
     /**
@@ -95,11 +96,17 @@ class ModalController extends Controller
         return $modal;
     }
 
+    /**
+     * Returns the teacher edit modal
+     * @param $teacherId
+     * @return ModalResponse
+     * @modalId 2
+     */
     private function getTeacherEditModal($teacherId): ModalResponse
     {
         $teacher = Teacher::find($teacherId);
 
-        $route = '';
+        $route = route('teacher.edit', ['id' => $teacherId]);
 
         $modal = new ModalResponse();
         $modal->title = __('Edit Teacher');
@@ -116,4 +123,25 @@ class ModalController extends Controller
 
         return $modal;
     }
+
+    private function getTeacherCreateModal(): ModalResponse
+    {
+        $route = route('teacher.create');
+
+        $modal = new ModalResponse();
+        $modal->title = __('Create Teacher');
+        $modal->body = view('teacherOverview.teacherForm', [
+            'route' => $route,
+            'genders' => Gender::all(),
+            'jobTitles' => JobTitle::all(),
+            'statuses' => StatusType::all(),
+            'salaryGrades' => SalaryGrade::all(),
+            'assessmentTypes' => AssessmentType::all(),
+            'assessmentObstacles' => AssessmentObstacle::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+
 }

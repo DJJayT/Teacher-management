@@ -10,46 +10,38 @@ class teachersOverview {
         let self = this;
 
         $(function () {
-            self.setDeleteButtonEvent(self);
             self.setEditButtonEvent(self);
-        });
-    }
-
-    setDeleteButtonEvent(self) {
-        $('.deleteTeacherButton').on('click', function () {
-            self.selectedTeacher = $(this).data('teacherid');
-            let modalId = $(this).data('modalid');
-
-            modal.getModal(modalId, self, self.submitDeleteTeacher);
-        });
-    }
-
-    submitDeleteTeacher(self, newModal) {
-        let teacherId = self.selectedTeacher;
-
-        $(newModal).find('.submitButton').on('click', function () {
-            $.ajax({
-                url: '/teacher/' + teacherId,
-                type: 'DELETE',
-                success: function () {
-                    window.location.reload();
-                }
-            });
+            self.setCreateButtonEvent(self);
         });
     }
 
     setEditButtonEvent(self) {
         $('.editTeacherButton').on('click', function () {
-            self.selectedTeacher = $(this).data('teacherid');
+            let selectedTeacher = $(this).data('teacherid');
             let modalId = $(this).data('modalid');
 
-            modal.getModal(modalId, self, self.submitEditTeacher, self.selectedTeacher);
+            modal.getModal(modalId, self, self.submitEditTeacher, selectedTeacher);
         });
     }
 
     submitEditTeacher(self, newModal) {
-        let teacherId = self.selectedTeacher;
+        $(newModal).find('.submitButton').on('click', function () {
+            $(newModal).find('#teacherForm').submit();
+        });
+    }
 
+    setCreateButtonEvent(self) {
+        $('.createTeacherButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+
+            modal.getModal(modalId, self, self.submitCreateTeacher);
+        });
+    }
+
+    submitCreateTeacher(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            $(newModal).find('#teacherForm').submit();
+        });
     }
 
 

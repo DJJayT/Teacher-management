@@ -15,14 +15,15 @@ class Teacher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'abbreviation',
         'gender_id',
         'entry',
         'exit',
         'job_title_id',
         'salary_grade_id',
-        'status',
+        'status_type_id',
         'status_since',
         'last_assessment_at',
         'last_assessment_type_id',
@@ -100,5 +101,10 @@ class Teacher extends Model
     public function getName(): string
     {
         return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->exit === null;
     }
 }
