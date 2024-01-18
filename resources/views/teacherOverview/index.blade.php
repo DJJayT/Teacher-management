@@ -46,10 +46,6 @@
                                 data-modalId="2" data-teacherId="{{ $teacher->id }}">
                             <i class="bi bi-pencil-fill"></i>
                         </button>
-                        <button type="button" class="btn btn-danger deleteTeacherButton"
-                                data-modalId="1" data-teacherId="{{ $teacher->id }}">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
                     </div>
                 </li>
             @endforeach
