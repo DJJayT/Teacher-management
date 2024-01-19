@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\SickDaysController;
@@ -52,6 +53,17 @@ Route::group([
 
     Route::post('/edit', [TeacherController::class, 'edit'])
         ->name('teacher.edit');
+});
+
+Route::group([
+    'middleware' => [
+        'auth',
+        'role:admin'
+    ],
+    'prefix' => 'admin'
+], function() {
+    Route::get('/userManagement', [AdminController::class, 'userManagement'])
+        ->name('admin.userManagement');
 });
 
 Route::post('/teacher/create', [TeacherController::class, 'create'])

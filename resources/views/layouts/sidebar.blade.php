@@ -24,22 +24,13 @@
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Admin') }}</span>
                             </a>
                             <ul id="adminMenu" class="nav flex-column ms-1 collapse ms-1 ms-md-3">
-                                @can('user.create')
-                                    <li class="w-100">
-                                        <a href="#" class="nav-link px-0 bi bi-person-standing">
+                                <li class="w-100">
+                                    <a href="{{ route('admin.userManagement') }}" class="nav-link px-0 bi bi-person-standing">
                                         <span class="d-none d-xl-inline">
-                                            User Create (Example)
+                                            {{ __('User management') }}
                                         </span>
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('user.delete')
-                                    <li class="w-100">
-                                        <a href="#" class="nav-link px-0 bi bi-alarm-fill">
-                                            <span class="d-none d-xl-inline">User Delete (Example)</span>
-                                        </a>
-                                    </li>
-                                @endcan
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         @endrole

@@ -7,13 +7,13 @@ use App\Models\Provider;
 use App\Models\Teacher;
 use App\Models\Training;
 
-class TrainingsController
+class TrainingsController extends Controller
 {
     public function index()
     {
         $trainings = Training::orderBy('name')->paginate(15);
 
-        return view('trainingOverview.index')
+        return view('allTrainings.index')
             ->with([
                 'trainings' => $trainings,
             ]);

@@ -271,5 +271,9 @@
     "Edit teacher": "Lehrer bearbeiten",
     "Abbreviation already exists": "Kürzel existiert bereits",
     "Teacher successfully created": "Lehrer erfolgreich erstellt",
-    "Teacher successfully updated": "Lehrer erfolgreich aktualisiert"
+    "Teacher successfully updated": "Lehrer erfolgreich aktualisiert",
+    "Edit Teacher": "Lehrer bearbeiten",
+    "Create Teacher": "Lehrer erstellen",
+    "User management": "Benutzerverwaltung",
+    "No role": "Keine Rolle"
 }

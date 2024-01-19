@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
-class TeacherController
+class TeacherController extends Controller
 {
     /**
      * Shows the overview of all teachers
