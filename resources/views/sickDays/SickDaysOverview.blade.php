@@ -7,7 +7,7 @@
     {{ __('Sick Days') }}
 @endsection
 @section('extra-content')
-    <h1>Krankheit - {{$teacher->getName()}}</h1>
+    <h1>Fehlzeiten - {{$teacher->getName()}}</h1>
 
     <script src="https://jsuites.net/v4/jsuites.js"></script>
     <input id='calendar'/>
@@ -24,9 +24,11 @@
                 document.getElementById('selected-p').innerText = 'New value is: ' + value;
 
                 let callback;
-                const postData = JSON.parse()
+                const postData = JSON.parse('{"id": "1", "month": "10", "year": "2023"}');
 
-                utilities.postAjax('/sickdaysmonth', '01', callback, '');
+                utilities.postAjax('/sickdaysmonth/1/10/2023', postData, function (response) {
+                    $('.sickDayList').html(response);
+                });
                 console.log(callback);
             }
         });

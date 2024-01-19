@@ -62,4 +62,4 @@ Route::get('/alltrainings', [TrainingsController::class, 'allTrainings']);
 
 Route::get('/training', [TrainingsController::class, 'training']);
 
-Route::get('/sickdaysmonth', [SickDaysController::class, 'getSickDaysOfMonth']);
+Route::post('/sickdaysmonth/{id}/{month}/{year}', [SickDaysController::class, 'getSickDaysOfMonth']);
