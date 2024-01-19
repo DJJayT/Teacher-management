@@ -16,6 +16,33 @@
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Home') }}</span>
                             </a>
                         </li>
+                        @role('admin')
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-0 align-middle" href="#adminMenu" data-bs-toggle="collapse"
+                               role="button" aria-expanded="false" aria-controls="article-menu">
+                                <i class="fs-4 bi bi-person-fill-exclamation"></i>
+                                <span class="ms-1 d-none d-xl-inline">{{ __('Admin') }}</span>
+                            </a>
+                            <ul id="adminMenu" class="nav flex-column ms-1 collapse ms-1 ms-md-3">
+                                @can('user.create')
+                                    <li class="w-100">
+                                        <a href="#" class="nav-link px-0 bi bi-person-standing">
+                                        <span class="d-none d-xl-inline">
+                                            User Create (Example)
+                                        </span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('user.delete')
+                                    <li class="w-100">
+                                        <a href="#" class="nav-link px-0 bi bi-alarm-fill">
+                                            <span class="d-none d-xl-inline">User Delete (Example)</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                        @endrole
 
 
                         <hr>

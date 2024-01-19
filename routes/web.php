@@ -49,7 +49,13 @@ Route::group([
 
     Route::get('/sickDays', [SickDaysController::class, 'teacherSickDays'])
         ->name('teacher.sickDays');
+
+    Route::post('/edit', [TeacherController::class, 'edit'])
+        ->name('teacher.edit');
 });
+
+Route::post('/teacher/create', [TeacherController::class, 'create'])
+    ->name('teacher.create');
 
 Route::post('/getModal/{modalId}/{additionalId?}', [ModalController::class, 'getModal'])
     ->name('getModal');

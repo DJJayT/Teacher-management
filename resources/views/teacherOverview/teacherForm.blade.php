@@ -1,4 +1,5 @@
-<form action="{{ $route }}" method="post">
+<form action="{{ $route }}" method="post" id="teacherForm">
+    @csrf
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="firstname" class="form-label">{{ __('Firstname') }} (*)</label>
@@ -28,9 +29,9 @@
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="gender">{{ __('Gender') }} (*)</label>
-            <select class="form-select" name="gender" id="gender">
+            <select class="form-select" name="gender_id" id="gender">
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the gender') }}</option>
+                    <option value="0" selected>{{ __('Select the gender') }}</option>
                 @endif
                 @foreach($genders as $gender)
                     <option
@@ -60,9 +61,9 @@
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="jobTitle">{{ __('Job title') }} (*)</label>
-            <select class="form-select" name="jobTitle" id="jobTitle" required>
+            <select class="form-select" name="job_title_id" id="jobTitle" required>
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the job title') }}</option>
+                    <option value="0" selected>{{ __('Select the job title') }}</option>
                 @endif
                 @foreach($jobTitles as $jobTitle)
                     <option
@@ -75,9 +76,9 @@
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="salaryGrade">{{ __('Salary grade') }} (*)</label>
-            <select class="form-select" name="salaryGrade" id="salaryGrade" required>
+            <select class="form-select" name="salary_grade_id" id="salaryGrade" required>
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the salary grade') }}</option>
+                    <option value="0" selected>{{ __('Select the salary grade') }}</option>
                 @endif
                 @foreach($salaryGrades as $salaryGrade)
                     <option
@@ -90,9 +91,9 @@
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="status">{{ __('Status') }} (*)</label>
-            <select class="form-select" name="status" id="status">
+            <select class="form-select" name="status_type_id" id="status">
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the status') }}</option>
+                    <option value="0" selected>{{ __('Select the status') }}</option>
                 @endif
                 @foreach($statuses as $status)
                     <option
@@ -107,23 +108,23 @@
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="statusSince">{{ __('Status since') }} (*)</label>
-            <input type="date" class="form-control" name="statusSince" id="statusSince"
+            <input type="date" class="form-control" name="status_since" id="statusSince"
                    @if(isset($teacher))
                        value="{{ $teacher->status_since->format('Y-m-d') }}"
                    @endif required>
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="lastAssessmentDate">{{ __('Last assessment date') }}</label>
-            <input type="date" class="form-control" name="lastAssessmentDate" id="lastAssessmentDate"
+            <input type="date" class="form-control" name="last_assessment_at" id="lastAssessmentDate"
                    @if(isset($teacher) && $teacher->last_assessment_at != null)
                        value="{{ $teacher->last_assessment_at->format('Y-m-d') }}"
                 @endif>
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
-            <label for="lastAssessmentTypeId">{{ __('Last assessment type') }} (*)</label>
-            <select class="form-select" name="lastAssessmentTypeId" id="lastAssessmentTypeId" required>
+            <label for="lastAssessmentTypeId">{{ __('Last assessment type') }}</label>
+            <select class="form-select" name="last_assessment_type_id" id="lastAssessmentTypeId" required>
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the last assessment type') }}</option>
+                    <option value="0" selected>{{ __('Select the last assessment type') }}</option>
                 @endif
                 @foreach($assessmentTypes as $assessmentType)
                     <option
@@ -138,13 +139,13 @@
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="assessmentObstacle">{{ __('Assessment obstacle') }}</label>
-            <select class="form-select" name="assessmentObstacle" id="assessmentObstacle">
+            <select class="form-select" name="assessment_obstacle_id" id="assessmentObstacle">
                 @if(!isset($teacher) || $teacher->assessment_obstacle_id == null)
-                    <option selected>{{ __('Select the assessment obstacle') }}</option>
+                    <option value="0" selected>{{ __('Select the assessment obstacle') }}</option>
                 @endif
                 @foreach($assessmentObstacles as $assessmentObstacle)
                     <option
-                        @if(isset($teacher) && $teacher->assessment_obstacle_id == $assessmentObstacle->id)
+                    @if(isset($teacher) && $teacher->assessment_obstacle_id == $assessmentObstacle->id)
                             selected
                         @endif
                         value="{{ $assessmentObstacle->id }}">{{ $assessmentObstacle->reason }}</option>
@@ -153,14 +154,14 @@
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="assessmentObstacleEndsAt">{{ __('Assessment obstacle ends at') }}</label>
-            <input type="date" class="form-control" name="assessmentObstacleEndsAt" id="assessmentObstacleEndsAt"
+            <input type="date" class="form-control" name="assessment_obstacle_ends_at" id="assessmentObstacleEndsAt"
                    @if(isset($teacher) && $teacher->assessment_obstacle_ends_at != null)
                        value="{{ $teacher->assessment_obstacle_ends_at->format('Y-m-d') }}"
                 @endif>
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="expectedAssessmentDeadline">{{ __('Expected assessment deadline') }} (*)</label>
-            <input type="date" class="form-control" name="expectedAssessmentDeadline" id="expectedAssessmentDeadline"
+            <input type="date" class="form-control" name="expected_assessment_deadline" id="expectedAssessmentDeadline"
                    @if(isset($teacher) && $teacher->expected_assessment_deadline != null)
                        value="{{ $teacher->expected_assessment_deadline->format('Y-m-d') }}"
                 @endif>
@@ -169,16 +170,16 @@
     <div class="row">
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="fixedAssessmentDeadline">{{ __('Fixed assessment deadline') }}</label>
-            <input type="date" class="form-control" name="fixedAssessmentDeadline" id="fixedAssessmentDeadline"
+            <input type="date" class="form-control" name="fixed_assessment_deadline" id="fixedAssessmentDeadline"
                    @if(isset($teacher) && $teacher->fixed_assessment_deadline != null)
                        value="{{ $teacher->fixed_assessment_deadline->format('Y-m-d') }}"
                 @endif>
         </div>
         <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
             <label for="nextAssessmentType">{{ __('Next assessment type') }} (*)</label>
-            <select class="form-select" name="assessmentObstacle" id="assessmentObstacle">
+            <select class="form-select" name="next_assessment_type_id" id="nextAssessmentTypeId">
                 @if(!isset($teacher))
-                    <option selected>{{ __('Select the next assessment type') }}</option>
+                    <option value="0" selected>{{ __('Select the next assessment type') }}</option>
                 @endif
                 @foreach($assessmentTypes as $assessmentType)
                     <option

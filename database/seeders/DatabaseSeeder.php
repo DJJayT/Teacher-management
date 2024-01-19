@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
             SickTimeReasonSeeder::class,
             ExemtionOffDutyReasonSeeder::class,
             UserSeeder::class,
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            RolePermissionSeeder::class,
         ]);
     }
 }
