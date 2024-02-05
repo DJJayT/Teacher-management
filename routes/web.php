@@ -76,8 +76,7 @@ Route::get('/sick', function () {
     return view('sickDays.SickDaysOverview');
 });
 
-Route::get('/alltrainings', [TrainingsController::class, 'allTrainings']);
-
-Route::get('/training', [TrainingsController::class, 'training']);
+Route::get('/allTrainings', [TrainingsController::class, 'allTrainings'])
+->name('trainings.index');
 
 Route::post('/sickdaysmonth/{id}/{month}/{year}', [SickDaysController::class, 'getSickDaysOfMonth']);
