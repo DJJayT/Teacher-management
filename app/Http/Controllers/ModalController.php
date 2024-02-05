@@ -9,9 +9,11 @@ use App\Models\JobTitle;
 use App\Models\SalaryGrade;
 use App\Models\StatusType;
 use App\Models\Teacher;
+use App\Models\User;
 use App\Responses\ModalResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class ModalController extends Controller
 {
@@ -20,6 +22,9 @@ class ModalController extends Controller
         1 => 'getDeleteModal',
         2 => 'getTeacherEditModal',
         3 => 'getTeacherCreateModal',
+        4 => 'getUserCreateModal',
+        5 => 'getUserEditModal',
+        6 => 'getCreateTrainingModal'
     ];
 
     /**
@@ -124,6 +129,10 @@ class ModalController extends Controller
         return $modal;
     }
 
+    /**
+     * Returns the teacher-create-modal
+     * @return ModalResponse
+     */
     private function getTeacherCreateModal(): ModalResponse
     {
         $route = route('teacher.create');
@@ -138,6 +147,49 @@ class ModalController extends Controller
             'salaryGrades' => SalaryGrade::all(),
             'assessmentTypes' => AssessmentType::all(),
             'assessmentObstacles' => AssessmentObstacle::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    private function getUserCreateModal(): ModalResponse
+    {
+        $modal = new ModalResponse();
+        if(!$this->can('user.create', $modal)) {
+            return $modal;
+        }
+
+        $route = route('user.create');
+
+        $modal->title = __('Create new user');
+        $modal->body = view('userManagement.userForm', [
+            'route' => $route,
+            'roles' => Role::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    private function getUserEditModal($userId): ModalResponse
+    {
+        $modal = new ModalResponse();
+        if(!$this->can('user.edit', $modal)) {
+            return $modal;
+        }
+
+        $user = User::find($userId);
+
+        if(!$this->checkIfSomethingFound($user, $modal)) {
+            return $modal;
+        }
+
+        $route = route('user.edit', ['id' => $userId]);
+
+        $modal->title = __('Edit user');
+        $modal->body = view('userManagement.userForm', [
+            'user' => $user,
+            'route' => $route,
+            'roles' => Role::all(),
         ])->render();
 
         return $modal;

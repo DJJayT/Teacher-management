@@ -19,7 +19,7 @@ class PermissionSeeder extends Seeder
         ];
 
         $permissions[] = [
-            'name' => 'user.change_password',
+            'name' => 'user.edit',
             'guard_name' => 'web',
             'created_at' => now(),
             'updated_at' => now()

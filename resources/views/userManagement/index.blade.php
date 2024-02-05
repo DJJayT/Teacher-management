@@ -4,13 +4,17 @@
     {{ __('Admin') }}
 @endsection
 
+@section('extra-js')
+    <script src="{{ asset('js/userManagement.js') }}"></script>
+@endsection
+
 @section('extra-content')
     <div class="row mb-2">
         <div class="col-md-8 col-xl-6 text-center mx-auto">
             <h2>{{ __('List of users') }}</h2>
             <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-outline-success createTeacherButton" data-modalId="3">
-                    <i class="bi bi-plus-circle"></i> {{ __('Create new teacher') }}
+                <button type="button" class="btn btn-outline-success createUserButton" data-modalId="4">
+                    <i class="bi bi-plus-circle"></i> {{ __('Create new user') }}
                 </button>
             </div>
             @include('alerts.default')
@@ -29,14 +33,18 @@
                         </p>
                     </div>
                     <div class="managingButtons ms-2">
-                        <button type="button" class="btn btn-primary editTeacherButton"
-                                data-modalId="2" data-teacherId="0">
-                            <i class="bi bi-pencil-fill"></i> {{ __('Edit') }}
-                        </button>
-                        <button type="button" class="btn btn-danger deleteTeacherButton"
-                                data-modalId="1" data-teacherId="0">
-                            <i class="bi bi-trash-fill"></i> {{ __('Delete') }}
-                        </button>
+                        @can('user.edit')
+                            <button type="button" class="btn btn-primary editUserButton"
+                                    data-modalId="5" data-userId="{{ $user->id }}">
+                                <i class="bi bi-pencil-fill"></i> {{ __('Edit') }}
+                            </button>
+                        @endcan
+                        @can('user.delete')
+                            <button type="button" class="btn btn-danger deleteUserButton"
+                                    data-modalId="1" data-userId="{{ $user->id }}">
+                                <i class="bi bi-trash-fill"></i> {{ __('Delete') }}
+                            </button>
+                        @endcan
                     </div>
                 </li>
             @endforeach

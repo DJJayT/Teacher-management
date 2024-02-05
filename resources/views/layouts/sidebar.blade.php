@@ -3,9 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col col-1 col-md-1 col-xl-2 px-md-1 px-0 bg-dark noselect sidebar position-fixed">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <p class="d-flex align-items-center text-white text-decoration-none mb-2">
+            <div class="col col-1 col-md-1 col-xl-2 px-md-1 px-0 bg-body-secondary noselect sidebar position-fixed">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                    <p class="d-flex align-items-center text-decoration-none mb-2">
                         <span class="fs-5 d-none d-xl-inline">{{ __('Menu') }}</span>
                     </p>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
@@ -14,6 +14,12 @@
                             <a href="{{ route('home') }}" class="nav-link align-middle px-0">
                                 <i class="bi bi-house-door-fill fs-4"></i>
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Home') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('trainings.index') }}" class="nav-link align-middle px-0">
+                                <i class="bi bi-easel fs-4"></i>
+                                <span class="ms-1 d-none d-xl-inline">{{ __('Trainings') }}</span>
                             </a>
                         </li>
                         @role('admin')
@@ -34,8 +40,6 @@
                             </ul>
                         </li>
                         @endrole
-
-
                         <hr>
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link px-0 align-middle">

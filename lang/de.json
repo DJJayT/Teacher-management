@@ -275,5 +275,14 @@
     "Edit Teacher": "Lehrer bearbeiten",
     "Create Teacher": "Lehrer erstellen",
     "User management": "Benutzerverwaltung",
-    "No role": "Keine Rolle"
+    "No role": "Keine Rolle",
+    "Create new user": "Neuen Benutzer erstellen",
+    "List of users": "Liste der Benutzer",
+    "Password confirmation": "Passwortbestätigung",
+    "Role": "Rolle",
+    "No change if empty": "Keine Änderung, wenn leer",
+    "User successfully edited": "Benutzer erfolgreich bearbeitet",
+    "User successfully created": "Benutzer erfolgreich erstellt",
+    "User successfully deleted": "Benutzer erfolgreich gelöscht",
+    "Only show active": "Nur aktive anzeigen"
 }

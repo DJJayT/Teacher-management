@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
@@ -16,16 +17,37 @@ class TeacherController extends Controller
      * Shows the overview of all teachers
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      * @method GET
-     * @route /
+     * @route /}
      */
     public function index()
     {
-        $teachers = Teacher::orderBy('exit')->orderBy('lastname')->paginate(15);
+        $teachers = Teacher::whereNull('exit')
+            ->orderBy('lastname')
+            ->paginate(15);
 
         return view('teacherOverview.index')
             ->with([
                 'teachers' => $teachers,
             ]);
+    }
+
+    public function getTeachers(Request $request)
+    {
+        $onlyActive = $request->get('onlyActive') === 'true';
+
+        if ($onlyActive) {
+            $teachers = Teacher::whereNull('exit')
+                ->orderBy('lastname')
+                ->paginate(15);
+        } else {
+            $teachers = Teacher::orderBy('lastname')
+                ->paginate(15);
+        }
+
+        return view('teacherOverview.teacherList')
+            ->with([
+                'teachers' => $teachers,
+            ])->render();
     }
 
     /**

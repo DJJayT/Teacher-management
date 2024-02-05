@@ -1,7 +1,5 @@
 class teachersOverview {
 
-    selectedTeacher = null;
-
     constructor() {
         this.init();
     }
@@ -12,6 +10,7 @@ class teachersOverview {
         $(function () {
             self.setEditButtonEvent(self);
             self.setCreateButtonEvent(self);
+            self.setShowActiveButtonEvent(self);
         });
     }
 
@@ -42,6 +41,35 @@ class teachersOverview {
         $(newModal).find('.submitButton').on('click', function () {
             $(newModal).find('#teacherForm').submit();
         });
+    }
+
+    setShowActiveButtonEvent(self) {
+        $('.showActiveButton').on('click', function () {
+            if($(this).find('i').hasClass('bi-check-circle-fill')) {
+                $(this).prop('disabled', true);
+
+                console.log($(this).find('i'));
+                $(this).find('i').removeClass('bi-check-circle-fill');
+                $(this).find('i').addClass('bi-circle');
+                self.getTeachersOverview(self, false)
+            } else {
+                $(this).prop('disabled', true);
+
+                $(this).find('i').removeClass('bi-circle');
+                $(this).find('i').addClass('bi-check-circle-fill');
+                self.getTeachersOverview(self)
+            }
+        });
+    }
+
+    getTeachersOverview(self, onlyActive = true) {
+        utilities.postAjax('/teachers/getOverview', {onlyActive: onlyActive}, self.setTeachersOverview, self)
+    }
+
+    setTeachersOverview(response, self) {
+        $('.showActiveButton').prop('disabled', false);
+        $('.teachersOverview').html(response);
+        self.setEditButtonEvent(self);
     }
 
 
