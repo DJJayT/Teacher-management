@@ -99,4 +99,4 @@ Route::get('/sick', function () {
     return view('sickDays.SickDaysOverview');
 });
 
-Route::post('/sickdaysmonth/{id}/{month}/{year}', [SickDaysController::class, 'getSickDaysOfMonth']);
+Route::get('/sickdaysmonth/{id}/{month}/{year}', [SickDaysController::class, 'getSickDaysOfMonth']);
