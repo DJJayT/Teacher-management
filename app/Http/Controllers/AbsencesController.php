@@ -8,35 +8,41 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 
-class SickDaysController extends Controller
+class AbsencesController extends Controller
 {
 
-    public function teacherSickDays($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function teacherAbsences($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $date = Carbon::now();
         $teacher = Teacher::find($id);
         $sickDays = $teacher->sickDays()
             ->where('from', '<=', $date->clone()->endOfMonth())
             ->where('until', '>=', $date->clone()->startOfMonth())
-            ->get();
+            ->paginate(15);
 
-        return view('sickDays.SickDaysOverview')
+        $offDutyDays = $teacher->offDutyDays()
+            ->where('from', '<=', $date->clone()->endOfMonth())
+            ->where('until', '>=', $date->clone()->startOfMonth())
+            ->paginate(15);
+
+        return view('absences.absencesOverview')
             ->with([
                 'teacher' => $teacher,
                 'sickDays' => $sickDays,
+                'offDutyDays' => $offDutyDays
             ]);
     }
 
-    public function getSickDaysOfMonth($id, $month, $year): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function getAbsencesOfMonth($id, $year, $month): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $date = Carbon::create($year, $month);
         $teacher = Teacher::find($id);
         $sickDays = $teacher->sickDays()
             ->where('from', '<=', $date->clone()->endOfMonth())
             ->where('until', '>=', $date->clone()->startOfMonth())
-            ->get();
+            ->paginate(15);
 
-        return view('sickDays.sickDaysList')
+        return view('absences.sickDaysList')
             ->with([
                 'sickDays' => $sickDays
             ]);

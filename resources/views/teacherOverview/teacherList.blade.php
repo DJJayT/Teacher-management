@@ -28,7 +28,7 @@
                 <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info">
                     <i class="bi bi-clipboard-check"></i> {{ __('Trainings') }}
                 </a>
-                <a href="{{ route('teacher.sickDays', ['id' => $teacher->id]) }}" class="btn btn-info">
+                <a href="{{ route('teacher.absences', ['id' => $teacher->id]) }}" class="btn btn-info">
                     <i class="bi bi-clock"></i> {{ __('Absences') }}
                 </a>
                 <button type="button" class="btn btn-primary editTeacherButton"
@@ -40,4 +40,4 @@
     @endforeach
 </ul>
 
-{{ $teachers->links() }}
+{{ $teachers->links('layouts.navigation') }}

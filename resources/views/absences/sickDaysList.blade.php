@@ -1,4 +1,4 @@
-<ul class="list-group mt-5">
+<ul class="list-group">
     @if($sickDays->isEmpty())
         <li class="list-group-item">
             {{ __('No sick days found') }}
@@ -7,7 +7,7 @@
         @foreach($sickDays as $sick)
             <li class="list-group-item d-flex justify-content-between">
                 <div class="teacherInfos">
-                    <p class="m-0 name">
+                    <p class="m-0 dates">
                         {{ $sick->from->format("d.m.Y")}} -
                         @if($sick->until != null)
                             {{$sick->until->format("d.m.Y")}}
@@ -29,7 +29,7 @@
                     </p>
                 </div>
             </li>
-
         @endforeach
+    {{ $sickDays->links() }}
     @endif
 </ul>

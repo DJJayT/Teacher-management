@@ -11,6 +11,7 @@ class teachersOverview {
             self.setEditButtonEvent(self);
             self.setCreateButtonEvent(self);
             self.setShowActiveButtonEvent(self);
+            self.setPaginationButtonsEvent(self);
         });
     }
 
@@ -62,14 +63,26 @@ class teachersOverview {
         });
     }
 
-    getTeachersOverview(self, onlyActive = true) {
-        utilities.postAjax('/teachers/getOverview', {onlyActive: onlyActive}, self.setTeachersOverview, self)
+    getTeachersOverview(self, onlyActive = true, pageId = 1) {
+        utilities.postAjax('/teachers/getOverview', {onlyActive: onlyActive, page: pageId}, self.setTeachersOverview, self)
     }
 
     setTeachersOverview(response, self) {
         $('.showActiveButton').prop('disabled', false);
         $('.teachersOverview').html(response);
         self.setEditButtonEvent(self);
+        self.setPaginationButtonsEvent(self);
+    }
+
+    setPaginationButtonsEvent(self) {
+        $('.page-item').on('click', function () {
+            let pageId = $(this).find('.page-link').data('pageid');
+            let onlyActive = $('.showActiveButton').find('i').hasClass('bi-check-circle-fill');
+
+            if(pageId !== undefined) {
+                self.getTeachersOverview(self, onlyActive, pageId);
+            }
+        });
     }
 
 

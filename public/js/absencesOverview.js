@@ -1,4 +1,4 @@
-class sickDayOverview {
+class absencesOverview {
 
     teacherId = null;
 
@@ -23,15 +23,14 @@ class sickDayOverview {
 
             onchange: function (instance, value) {
                 let splittedValue = value.split('-');
-                let url = '/sickdaysmonth/' + self.teacherId + '/' + splittedValue[1] + '/' + splittedValue[0];
+                let url = '/teacher/' + self.teacherId + '/absences/' + splittedValue[0] + '/' + splittedValue[1];
 
-                utilities.getAjax(url, function (success) {
+                console.log(url)
+
+                utilities.postAjax(url, {}, function (success) {
                     $('.sickDayList').html(success);
-                    console.log('success');
-                    console.log(success);
-                }, self, function (error) {
-                    console.log(error);
-                });
+                    console.log(success)
+                }, self);
 
             }
         });
@@ -42,4 +41,4 @@ class sickDayOverview {
     }
 }
 
-new sickDayOverview();
+new absencesOverview();

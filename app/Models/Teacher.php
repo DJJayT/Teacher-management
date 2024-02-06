@@ -98,6 +98,11 @@ class Teacher extends Model
         return $this->hasMany(TeacherSickTime::class, 'teacher_id', 'id');
     }
 
+    public function offDutyDays(): HasMany
+    {
+        return $this->hasMany(TeacherOffDuty::class, 'teacher_id', 'id');
+    }
+
     public function getName(): string
     {
         return $this->firstname . ' ' . $this->lastname;

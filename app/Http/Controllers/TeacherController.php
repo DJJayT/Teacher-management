@@ -31,6 +31,11 @@ class TeacherController extends Controller
             ]);
     }
 
+    /**
+     * Returns the teacher list for the teacher overview
+     * @param Request $request
+     * @return string
+     */
     public function getTeachers(Request $request)
     {
         $onlyActive = $request->get('onlyActive') === 'true';

@@ -9,7 +9,10 @@ return new class extends Migration {
     {
         Schema::create('teacher_sick_times', function (Blueprint $table) {
             $table->id();
-            $table->integer('teacher_id');
+            $table->foreignId('teacher_id')
+                ->constrained('teachers')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
             $table->date('from');
             $table->date('until');
             $table->integer('teaching_days');

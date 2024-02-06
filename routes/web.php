@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModalController;
-use App\Http\Controllers\SickDaysController;
+use App\Http\Controllers\AbsencesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TrainingsController;
 use Illuminate\Support\Facades\Route;
@@ -64,8 +64,11 @@ Route::group([
         Route::get('/trainingEntry', [TrainingsController::class, 'trainingEntry'])
             ->name('teacher.trainingEntry');
 
-        Route::get('/sickDays', [SickDaysController::class, 'teacherSickDays'])
-            ->name('teacher.sickDays');
+        Route::get('/absences', [AbsencesController::class, 'teacherAbsences'])
+            ->name('teacher.absences');
+
+        Route::post('/absences/{year}/{month}', [AbsencesController::class, 'getAbsencesOfMonth'])
+            ->name('teacher.absencesOfMonth');
 
         Route::post('/edit', [TeacherController::class, 'edit'])
             ->name('teacher.edit');
@@ -94,9 +97,3 @@ Route::group([
             ->name('user.delete');
     });
 });
-
-Route::get('/sick', function () {
-    return view('sickDays.SickDaysOverview');
-});
-
-Route::get('/sickdaysmonth/{id}/{month}/{year}', [SickDaysController::class, 'getSickDaysOfMonth']);
