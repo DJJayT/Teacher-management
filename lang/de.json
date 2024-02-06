@@ -284,5 +284,8 @@
     "User successfully edited": "Benutzer erfolgreich bearbeitet",
     "User successfully created": "Benutzer erfolgreich erstellt",
     "User successfully deleted": "Benutzer erfolgreich gelöscht",
-    "Only show active": "Nur aktive anzeigen"
+    "Only show active": "Nur aktive anzeigen",
+    "Days off from :teacher": "Fehlzeiten von :teacher",
+    "Excused": "Entschuldigt",
+    "Unexcused": "Unentschuldigt"
 }

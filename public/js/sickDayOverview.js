@@ -28,7 +28,7 @@ class sickDayOverview {
                 utilities.getAjax(url, function (success) {
                     $('.sickDayList').html(success);
                     console.log('success');
-                    console.log(success)
+                    console.log(success);
                 }, self, function (error) {
                     console.log(error);
                 });
@@ -38,7 +38,7 @@ class sickDayOverview {
     }
 
     getTeacherId(self) {
-        self.teacherId = $('.title').data('teacherid');
+        self.teacherId = $('meta[name="teacher_id"]').attr('content')
     }
 }
 
