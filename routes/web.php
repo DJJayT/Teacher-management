@@ -70,6 +70,12 @@ Route::group([
         Route::post('/absences/{year}/{month}', [AbsencesController::class, 'getAbsencesOfMonth'])
             ->name('teacher.absencesOfMonth');
 
+        Route::post('/getSickDays', [AbsencesController::class, 'getSickDays'])
+            ->name('teacher.getSickDays');
+
+        Route::post('/getOffDutyDays', [AbsencesController::class, 'getOffDutyDays'])
+            ->name('teacher.getOffDutyDays');
+
         Route::post('/edit', [TeacherController::class, 'edit'])
             ->name('teacher.edit');
     });

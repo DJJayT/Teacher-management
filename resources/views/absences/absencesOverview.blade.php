@@ -25,7 +25,7 @@
     <input class="form-control w-25" id='calendar'>
     <p id="selected-p"></p>
 
-    <div class="row">
+    <div class="row absencesList">
         @include('absences.absencesList')
     </div>
 @endsection

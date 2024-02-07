@@ -295,5 +295,10 @@
     "Sick days": "Krankheitstage",
     "Off duty days": "Dienstbefreiungen",
     "Absences overview": "Fehlzeitenübersicht",
-    "Teaching days: :days": "Unterrichtstage: :days"
+    "Teaching days: :days": "Unterrichtstage: :days",
+    "No sick days found": "Keine Krankheitstage gefunden",
+    "No off duty days found": "Keine Dienstbefreiungen gefunden",
+    "Total days: :days": "Gesamt Tage: :days",
+    "In hospital": "Im Krankenhaus",
+    "Not in hospital": "Nicht im Krankenhaus"
 }

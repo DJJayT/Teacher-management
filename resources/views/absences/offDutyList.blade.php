@@ -1,23 +1,23 @@
 <ul class="list-group">
     @if($offDutyDays->isEmpty())
         <li class="list-group-item">
-            {{ __('No sick days found') }}
+            {{ __('No off duty days found') }}
         </li>
     @else
         @foreach($offDutyDays as $offDutyDay)
-            <li class="list-group-item d-flex justify-content-between">
-                <div class="teacherInfos">
-                    <p class="m-0 dates">
+            <li class="list-group-item d-flex justify-content-between mb-2">
+                <div class="offDutyDayInfos">
+                    <p class="m-0 dates d-inline-block">
                         {{ $offDutyDay->from->format("d.m.Y")}} -
                         @if($offDutyDay->until != null)
                             {{$offDutyDay->until->format("d.m.Y")}}
                         @endif
-                        @if(isset($offDutyDay->teaching_days))
-                            <span class="badge bg-primary ms-2">
+                    </p>
+                    @if(isset($offDutyDay->teaching_days))
+                        <span class="badge bg-primary ms-2">
                                 {{ __('Teaching days: :days', ['days' => $offDutyDay->teaching_days]) }}
                             </span>
-                        @endif
-                    </p>
+                    @endif
                     <p class="text-muted">
                         {{ __('Reason') }}: {{ $offDutyDay->reason->reason }}
                     </p>
@@ -31,5 +31,7 @@
             </li>
 
         @endforeach
+
+        {{ $offDutyDays->links() }}
     @endif
 </ul>

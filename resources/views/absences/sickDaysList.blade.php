@@ -4,24 +4,45 @@
             {{ __('No sick days found') }}
         </li>
     @else
-        @foreach($sickDays as $sick)
-            <li class="list-group-item d-flex justify-content-between">
-                <div class="teacherInfos">
-                    <p class="m-0 dates">
-                        {{ $sick->from->format("d.m.Y")}} -
-                        @if($sick->until != null)
-                            {{$sick->until->format("d.m.Y")}}
+        @foreach($sickDays as $sickDay)
+            <li class="list-group-item d-flex justify-content-between mb-2">
+                <div class="sickDayInfos">
+                    <p class="m-0 dates d-inline-block">
+                        {{ $sickDay->from->format("d.m.Y") }} -
+                        @if($sickDay->until != null)
+                            {{ $sickDay->until->format("d.m.Y") }}
                         @endif
                     </p>
-                    <p class="text-muted">
-                        {{ __('Reason') }}: {{ $sick->reason->reason }}
+                    @if(isset($sickDay->teaching_days))
+                        <span class="badge bg-primary ms-2">
+                                {{ __('Teaching days: :days', ['days' => $sickDay->teaching_days]) }}
+                            </span>
+                    @endif
+                    @if(isset($sickDay->total_days))
+                        <span class="badge bg-secondary ms-2">
+                                {{ __('Total days: :days', ['days' => $sickDay->total_days]) }}
+                            </span>
+                    @endif
+                    <p class="text-muted m-0">
+                        {{ __('Reason') }}: {{ $sickDay->reason->reason }}
                     </p>
                     <p @class([
                             'mb-0',
-                            'text-success' => $sick->certificate,
-                            'text-danger' => !$sick->certificate
+                            'text-muted' => !$sickDay->hospital,
+                            'text-danger' => $sickDay->hospital
                         ])>
-                        @if($sick->certificate)
+                        @if($sickDay->hospital)
+                            {{ __('In hospital') }}
+                        @else
+                            {{ __('Not in hospital') }}
+                        @endif
+                    </p>
+                    <p @class([
+                            'mb-0',
+                            'text-success' => $sickDay->certificate,
+                            'text-danger' => !$sickDay->certificate
+                        ])>
+                        @if($sickDay->certificate)
                             {{ __('Excused') }}
                         @else
                             {{ __('Unexcused') }}
@@ -30,6 +51,6 @@
                 </div>
             </li>
         @endforeach
-    {{ $sickDays->links() }}
+        {{ $sickDays->links() }}
     @endif
 </ul>

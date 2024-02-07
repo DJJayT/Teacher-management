@@ -5,10 +5,10 @@
     </button>
     @include('absences.sickDaysList')
 </div>
-<div class="col-md-6 col-12 mb-2 sickDayList">
+<div class="col-md-6 col-12 mb-2 offDutyList">
     <h4>{{ __('Off duty days') }}</h4>
     <button type="button" class="btn btn-outline-success createOffDutyButton mb-2" data-modalId="3">
         <i class="bi bi-plus-circle"></i> {{ __('Create new off duty day') }}
     </button>
-    @include('absences.daysOffList')
+    @include('absences.offDutyList')
 </div>
