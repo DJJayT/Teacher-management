@@ -90,6 +90,7 @@ class absencesOverview {
     }
 
     setOffDutyDaysOverview(response, self) {
+        $('.offDutyDaysPagination').remove();
         $('.offDutyList').find('.list-group').replaceWith(response);
         self.setOffDutyPaginationButtonsEvent(self);
     }
@@ -99,6 +100,7 @@ class absencesOverview {
     }
 
     setSickDayOverview(response, self) {
+        $('.sickDaysPagination').remove();
         $('.sickDayList').find('.list-group').replaceWith(response);
         self.setSickDaysPaginationButtonsEvent(self);
     }

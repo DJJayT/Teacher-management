@@ -1,11 +1,11 @@
-<ul class="list-group">
+<ul class="list-group mb-2">
     @if($offDutyDays->isEmpty())
         <li class="list-group-item">
             {{ __('No off duty days found') }}
         </li>
     @else
         @foreach($offDutyDays as $offDutyDay)
-            <li class="list-group-item d-flex justify-content-between mb-2">
+            <li class="list-group-item d-flex justify-content-between">
                 <div class="offDutyDayInfos">
                     <p class="m-0 dates d-inline-block">
                         {{ $offDutyDay->from->format("d.m.Y")}} -
@@ -29,9 +29,10 @@
                     </p>
                 </div>
             </li>
-
         @endforeach
-
-        {{ $offDutyDays->links() }}
     @endif
 </ul>
+
+<div class="offDutyDaysPagination">
+    {{ $offDutyDays->links() }}
+</div>
