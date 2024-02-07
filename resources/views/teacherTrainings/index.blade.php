@@ -33,8 +33,8 @@
                     <th>Name</th>
                     <th>{{__("from")}}</th>
                     <th>{{__("until")}}</th>
-                    <th>{{__("Area")}}</th>
-                    <th>{{__("Provider")}}</th>
+                    <th>{{__("area")}}</th>
+                    <th>{{__("provider")}}</th>
                     <th>{{__("duration")}}</th>
 
                     @foreach($trainings as $training)

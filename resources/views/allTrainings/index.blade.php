@@ -1,5 +1,9 @@
 @extends('layouts.sidebar')
 
+@section('extra-js')
+    <script src="{{ asset('js/trainingsOverview.js') }}"></script>
+@endsection
+
 @section('extra-content')
 
     <div class="container">
@@ -8,7 +12,9 @@
                 <h1>{{ __('All trainings') }}</h1>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-primary"><i class="bi bi-folder-fill"></i> {{ __('new training') }}</button>
+                <button type="button" class="btn btn-outline-success createTrainingButton" data-modalId="6">
+                    <i class="bi bi-plus-circle"></i> {{ __('new training') }}
+                </button>
             </div>
         </div>
         <div class="row pt-2 pb-2">
@@ -27,8 +33,8 @@
             <table>
                 <tr>
                     <th>{{__("Title")}}</th>
-                    <th>{{__("Area")}}</th>
-                    <th>{{__("Provider")}}</th>
+                    <th>{{__("area")}}</th>
+                    <th>{{__("provider")}}</th>
 
                     @foreach($trainings as $training)
                         <th>{{ $training->title }}</th>
@@ -37,6 +43,9 @@
                     @endforeach
                 </tr>
             </table>
+        </div>
+        <div class="row mb-2 trainingsOverview">
+            @include('allTrainings.trainingList')
         </div>
 
     </div>

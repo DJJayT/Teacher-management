@@ -43,11 +43,17 @@ Route::group([
     Route::get('/allTrainings', [TrainingsController::class, 'allTrainings'])
         ->name('trainings.index');
 
+    Route::post('/training/create', [TrainingsController::class, 'create'])
+        ->name('training.create');
+
     Route::post('/teacher/create', [TeacherController::class, 'create'])
         ->name('teacher.create');
 
     Route::post('/teachers/getOverview', [TeacherController::class, 'getTeachers'])
         ->name('teachers.getOverview');
+
+    Route::post('/trainings/getOverview', [TrainingsController::class, 'getTrainings'])
+        ->name('trainings.getOverview');
 
     Route::post('/user/create', [AdminController::class, 'createUser'])
         ->name('user.create');

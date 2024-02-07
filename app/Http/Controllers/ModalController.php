@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\AssessmentObstacle;
 use App\Models\AssessmentType;
 use App\Models\Gender;
 use App\Models\JobTitle;
+use App\Models\Provider;
 use App\Models\SalaryGrade;
 use App\Models\StatusType;
 use App\Models\Teacher;
+use App\Models\Training;
 use App\Models\User;
 use App\Responses\ModalResponse;
 use Illuminate\Http\JsonResponse;
@@ -24,7 +27,8 @@ class ModalController extends Controller
         3 => 'getTeacherCreateModal',
         4 => 'getUserCreateModal',
         5 => 'getUserEditModal',
-        6 => 'getCreateTrainingModal'
+        6 => 'getCreateTrainingModal',
+        7 => 'getTrainingEditModal'
     ];
 
     /**
@@ -195,5 +199,36 @@ class ModalController extends Controller
         return $modal;
     }
 
+    private function getCreateTrainingModal(): ModalResponse
+    {
+        $modal = new ModalResponse();
+        $route = route('training.create');
+
+        $modal->title = __('Create Training');
+        $modal->body = view('allTrainings.trainingForm', [
+            'route' => $route,
+            'areas' => Area::all(),
+            'providers' => Provider::all(),
+        ])->render();
+
+        return $modal;
+    }
+    private function getTrainingEditModal($trainingId): ModalResponse
+    {
+        $training = Training::find($trainingId);
+
+        $route = route('training.edit', ['id' => $trainingId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Edit Training');
+        $modal->body = view('allTrainings.trainingForm', [
+            'training' => $training,
+            'route' => $route,
+            'areas' => Area::all(),
+            'providers' => Provider::all(),
+        ])->render();
+
+        return $modal;
+    }
 
 }

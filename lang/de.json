@@ -300,5 +300,7 @@
     "No off duty days found": "Keine Dienstbefreiungen gefunden",
     "Total days: :days": "Gesamt Tage: :days",
     "In hospital": "Im Krankenhaus",
-    "Not in hospital": "Nicht im Krankenhaus"
+    "Not in hospital": "Nicht im Krankenhaus",
+    "Select area": "Bereich auswählen",
+    "Select provider": "Anbieter auswählen"
 }

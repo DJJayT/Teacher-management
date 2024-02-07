@@ -49,7 +49,7 @@
                 </select>
             </div>
             <div class="col">
-                <label for="area">{{ __('Area') }}:</label>
+                <label for="area">{{ __('area') }}:</label>
                 <select class="form-control" id="area">
                     @foreach($areas as $area)
                         <option>{{$area->description}}</option>
@@ -57,7 +57,7 @@
                 </select>
             </div>
             <div class="col">
-                <label for="provider">{{ __('Provider') }}:</label>
+                <label for="provider">{{ __('provider') }}:</label>
                 <select class="form-control" id="provider">
                     @foreach($providers as $provider)
                         <option>{{$provider->name}}</option>

@@ -6,6 +6,10 @@ use App\Models\Area;
 use App\Models\Provider;
 use App\Models\Teacher;
 use App\Models\Training;
+use App\Requests\TrainingRequest;
+use Exception;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class TrainingsController extends Controller
 {
@@ -65,4 +69,54 @@ class TrainingsController extends Controller
                 'providers' => Provider::all()
             ]);
     }
+
+    /**
+     * Returns the training list for the training overview
+     * @param Request $request
+     * @return string
+    */
+    public function getTrainings(Request $request)
+    {
+
+        return view('allTrainings.trainingList')
+            ->with([
+                'trainings' => $trainings,
+            ])->render();
+    }
+
+
+
+    /**
+     * Edits a training with the information from the form
+     * @param int $id
+     * @param TrainingRequest $request
+     * @return RedirectResponse
+     * @throws Exception
+     * @method POST
+     * @route /training/{id}/edit
+     */
+    public function edit(int $id, TrainingRequest $request)
+    {
+        $training = Teacher::findOrFail($id);
+
+        $training->update($request->validated());
+
+        return redirect()->back()->with('success', __('Training successfully updated'));
+    }
+
+    /**
+     * Creates a new training with the information from the form
+     * @param TrainingRequest $request
+     * @return RedirectResponse
+     * @method POST
+     * @route /training/create
+     */
+    public function create(TrainingRequest $request)
+    {
+        Training::create($request->validated());
+
+        return redirect()->back()->with('success', __('Training successfully created'));
+    }
+
+
 }

@@ -41,7 +41,6 @@ class modal {
             $(newModal).find('.closeButton').text(modalData.closeText);
         }
 
-
         $(newModal).find('.closeButton').on('click', function () {
             $(newModal).modal('hide');
         });
