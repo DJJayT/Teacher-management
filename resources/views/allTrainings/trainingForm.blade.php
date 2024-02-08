@@ -1,17 +1,15 @@
 <form action="{{ $route }}" method="post" id="trainingForm">
     @csrf
     <div class="row">
-        <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
+        <div class="mb-2 col-md-6 col-sm-12">
             <label for="title" class="form-label">{{ __('Title') }} (*)</label>
             <input type="text" class="form-control" name="title" id="title"
                    @if(isset($training))
-                       value="{{$training->title}}"
+                       value="{{ $training->title }}"
                    @endif
                    required>
         </div>
-    </div>
-    <div class="row">
-        <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
+        <div class="mb-2 col-md-6 col-sm-12">
             <label for="areas">{{ __('area') }} (*)</label>
             <select class="form-select" name="area_id" id="areas">
                 @if(!isset($training))
@@ -26,7 +24,9 @@
                 @endforeach
             </select>
         </div>
-        <div class="mb-2 col-xl-4 col-md-6 col-sm-12">
+    </div>
+    <div class="row">
+        <div class="mb-2 col-md-6 col-sm-12">
             <label for="providers">{{ __('provider') }} (*)</label>
             <select class="form-select" name="provider_id" id="providers">
                 @if(!isset($training))

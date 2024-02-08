@@ -10,18 +10,8 @@ class TrainingRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'area' => ['required', 'exists:areas,id'],
-            'provider' => ['required', 'exists:providers,id'],
+            'area_id' => ['required', 'exists:areas,id'],
+            'provider_id' => ['required', 'exists:providers,id'],
         ];
     }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'title' => $this->title === "" ? null : $this->title,
-            'area_id' => (int) $this->area_id === 0 ? null : (int)$this->area_id,
-            'provider_id' => (int) $this->provider_id === 0 ? null : (int)$this->provider_id,
-        ]);
-    }
-
 }

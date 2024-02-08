@@ -14,7 +14,7 @@ return new class extends Migration {
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->foreignId('training_id')
-                ->constrained('teacher_trainings')
+                ->constrained('trainings')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->date('training_from');

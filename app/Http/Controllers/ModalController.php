@@ -11,6 +11,7 @@ use App\Models\Provider;
 use App\Models\SalaryGrade;
 use App\Models\StatusType;
 use App\Models\Teacher;
+use App\Models\TeacherTraining;
 use App\Models\Training;
 use App\Models\User;
 use App\Responses\ModalResponse;
@@ -28,7 +29,9 @@ class ModalController extends Controller
         4 => 'getUserCreateModal',
         5 => 'getUserEditModal',
         6 => 'getCreateTrainingModal',
-        7 => 'getTrainingEditModal'
+        7 => 'getTrainingEditModal',
+        8 => 'getTeacherTrainingEditModal',
+        9 => 'getTeacherTrainingCreateModal',
     ];
 
     /**
@@ -107,11 +110,11 @@ class ModalController extends Controller
 
     /**
      * Returns the teacher edit modal
-     * @param $teacherId
+     * @param int $teacherId
      * @return ModalResponse
      * @modalId 2
      */
-    private function getTeacherEditModal($teacherId): ModalResponse
+    private function getTeacherEditModal(int $teacherId): ModalResponse
     {
         $teacher = Teacher::find($teacherId);
 
@@ -136,6 +139,7 @@ class ModalController extends Controller
     /**
      * Returns the teacher-create-modal
      * @return ModalResponse
+     * @modalId 3
      */
     private function getTeacherCreateModal(): ModalResponse
     {
@@ -156,6 +160,11 @@ class ModalController extends Controller
         return $modal;
     }
 
+    /**
+     * Returns the user-create-modal
+     * @return ModalResponse
+     * @modalId 4
+     */
     private function getUserCreateModal(): ModalResponse
     {
         $modal = new ModalResponse();
@@ -174,7 +183,13 @@ class ModalController extends Controller
         return $modal;
     }
 
-    private function getUserEditModal($userId): ModalResponse
+    /**
+     * Returns the user-edit-modal
+     * @param int $userId
+     * @return ModalResponse
+     * @modalId 5
+     */
+    private function getUserEditModal(int $userId): ModalResponse
     {
         $modal = new ModalResponse();
         if(!$this->can('user.edit', $modal)) {
@@ -199,12 +214,17 @@ class ModalController extends Controller
         return $modal;
     }
 
+    /**
+     * Returns the create training modal
+     * @return ModalResponse
+     * @modalId 6
+     */
     private function getCreateTrainingModal(): ModalResponse
     {
         $modal = new ModalResponse();
         $route = route('training.create');
 
-        $modal->title = __('Create Training');
+        $modal->title = __('Create training');
         $modal->body = view('allTrainings.trainingForm', [
             'route' => $route,
             'areas' => Area::all(),
@@ -213,7 +233,14 @@ class ModalController extends Controller
 
         return $modal;
     }
-    private function getTrainingEditModal($trainingId): ModalResponse
+
+    /**
+     * Returns the edit training modal
+     * @param int $trainingId
+     * @return ModalResponse
+     * @modalId 7
+     */
+    private function getTrainingEditModal(int $trainingId): ModalResponse
     {
         $training = Training::find($trainingId);
 
@@ -226,6 +253,43 @@ class ModalController extends Controller
             'route' => $route,
             'areas' => Area::all(),
             'providers' => Provider::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    /**
+     * Returns the edit teacher training modal
+     * @param int $trainingId
+     * @return ModalResponse
+     * @modalId 8
+     */
+    private function getTeacherTrainingEditModal(int $trainingId): ModalResponse
+    {
+        $teacherTraining = TeacherTraining::find($trainingId);
+
+        $route = route('teacher.training.edit', ['id' => $teacherTraining->teacher_id,'trainingId' => $trainingId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Edit Training');
+        $modal->body = view('teacherTrainings.teacherTrainingsForm', [
+            'teacherTraining' => $teacherTraining,
+            'trainings' => Training::all(),
+            'route' => $route
+        ])->render();
+
+        return $modal;
+    }
+
+    private function getTeacherTrainingCreateModal(int $teacherId): ModalResponse
+    {
+        $route = route('teacher.training.create', ['id' => $teacherId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Create Training');
+        $modal->body = view('teacherTrainings.teacherTrainingsForm', [
+            'route' => $route,
+            'trainings' => Training::all(),
         ])->render();
 
         return $modal;

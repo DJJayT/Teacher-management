@@ -10,11 +10,11 @@ return new class extends Migration {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('area')
+            $table->foreignId('area_id')
                 ->constrained('areas')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->foreignId('provider')
+            $table->foreignId('provider_id')
                 ->constrained('providers')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();

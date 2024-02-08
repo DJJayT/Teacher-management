@@ -10,17 +10,22 @@ class Training extends Model
 {
     protected $fillable = [
         'title',
-        'area',
-        'provider',
+        'area_id',
+        'provider_id',
     ];
 
-    public function providers(): HasOne
+    public function provider(): HasOne
     {
-        return $this->hasOne(Provider::class);
+        return $this->hasOne(Provider::class, 'id', 'provider_id');
     }
 
     public function teachers(): HasManyThrough
     {
         return $this->hasManyThrough(Teacher::class, TeacherTraining::class, 'training_id', 'id', 'id', 'teacher_id');
+    }
+
+    public function area(): HasOne
+    {
+        return $this->hasOne(Area::class, 'id', 'area_id');
     }
 }

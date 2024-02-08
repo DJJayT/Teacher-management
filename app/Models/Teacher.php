@@ -79,9 +79,9 @@ class Teacher extends Model
         return $this->hasOne(AssessmentType::class);
     }
 
-    public function trainings(): HasManyThrough
+    public function trainings(): HasMany
     {
-        return $this->hasManyThrough(Training::class, TeacherTraining::class, 'teacher_id', 'id', 'id', 'training_id');
+        return $this->hasMany(TeacherTraining::class, 'teacher_id', 'id');
     }
 
     public function getAssessmentDeadline(): Carbon

@@ -3,10 +3,13 @@
         <li class="list-group-item d-flex justify-content-between">
             <div class="trainingInfos">
                 <p class="m-0 name">
-                    {{ $training->title}}
+                    <b>{{ __('Title') }}: {{ $training->title }}</b>
                 </p>
-                <p class="text-muted">
-                    {{ $training->areas->description }} -  {{ $training->providers->name }}
+                <p class="text-muted m-0">
+                    {{ __('Area') }}: {{ $training->area->description }}
+                </p>
+                <p class="text-muted m-0 mb-2">
+                    {{ __('Provider') }}: {{ $training->provider->name }}
                 </p>
             </div>
             <div class="managingButtons ms-2">

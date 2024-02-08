@@ -22,11 +22,11 @@ class TeacherTraining extends Model
 
     public function teacher(): HasOne
     {
-        return $this->hasOne(Teacher::class);
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id');
     }
 
     public function training(): HasOne
     {
-        return $this->hasOne(Training::class);
+        return $this->hasOne(Training::class, 'id', 'training_id');
     }
 }

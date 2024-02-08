@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Provider;
 use App\Models\Teacher;
 use App\Models\Training;
+use App\Requests\TeacherTrainingRequest;
 use App\Requests\TrainingRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
@@ -15,18 +16,21 @@ class TrainingsController extends Controller
 {
     public function index()
     {
-        $trainings = Training::orderBy('name')->paginate(15);
-
         return view('allTrainings.index')
             ->with([
-                'trainings' => $trainings,
+                'trainings' => Training::paginate(1),
+                'areas' => Area::all(),
+                'providers' => Provider::all(),
             ]);
     }
 
-    public function teacherTrainings($id)
+
+    public function teacherTrainings(int $id)
     {
-        $teacher = Teacher::find($id);
-        $trainings = $teacher->trainings()->orderBy('name')->paginate(15);
+        $teacher = Teacher::findOrFail($id);
+        $trainings = $teacher->trainings()
+            ->orderBy('training_until')
+            ->paginate(1);
 
         return view('teacherTrainings.index')
             ->with([
@@ -36,55 +40,6 @@ class TrainingsController extends Controller
                 'provider' => Provider::all()
             ]);
     }
-
-    public function training()
-    {
-        return view('training.index')
-            ->with([
-                'areas' => Area::all(),
-                'providers' => Provider::all(),
-            ]);
-    }
-
-    public function allTrainings()
-    {
-        return view('allTrainings.index')
-            ->with([
-                'trainings' => training::all(),
-                'areas' => Area::all(),
-                'providers' => Provider::all(),
-            ]);
-    }
-
-    public function trainingEntry($id)
-    {
-        $teacher = Teacher::find($id);
-        $trainings = $teacher->trainings()->orderBy('name')->paginate(15);
-
-        return view('trainingEntry.index')
-            ->with([
-                'trainings' => $trainings,
-                'teacher' => $teacher,
-                'areas' => Area::all(),
-                'providers' => Provider::all()
-            ]);
-    }
-
-    /**
-     * Returns the training list for the training overview
-     * @param Request $request
-     * @return string
-    */
-    public function getTrainings(Request $request)
-    {
-
-        return view('allTrainings.trainingList')
-            ->with([
-                'trainings' => $trainings,
-            ])->render();
-    }
-
-
 
     /**
      * Edits a training with the information from the form
@@ -97,7 +52,7 @@ class TrainingsController extends Controller
      */
     public function edit(int $id, TrainingRequest $request)
     {
-        $training = Teacher::findOrFail($id);
+        $training = Training::findOrFail($id);
 
         $training->update($request->validated());
 
@@ -113,9 +68,40 @@ class TrainingsController extends Controller
      */
     public function create(TrainingRequest $request)
     {
-        Training::create($request->validated());
+        $training = Training::create($request->validated());
+
+        if (!$training) {
+            return redirect()->back()->with('error', __('Training could not be created'));
+        }
 
         return redirect()->back()->with('success', __('Training successfully created'));
+    }
+
+    public function getTeacherTrainingsOverview(int $id, Request $request)
+    {
+        $trainings = Teacher::findOrFail($id)
+            ->trainings()
+            ->orderBy('training_until')
+            ->paginate(1);
+
+        return view('teacherTrainings.teacherTrainingsList')
+            ->with([
+                'trainings' => $trainings,
+            ])->render();
+    }
+
+    public function editTeacherTraining(int $teacherId, int $trainingId, TeacherTrainingRequest $request)
+    {
+        $training = Teacher::findOrFail($teacherId)
+            ->trainings()
+            ->where('id', $trainingId)
+            ->first();
+
+        $training->update($request->validated());
+
+        return redirect()
+            ->back()
+            ->with('success', __('Training successfully updated'));
     }
 
 

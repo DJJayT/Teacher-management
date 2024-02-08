@@ -40,11 +40,14 @@ Route::group([
     Route::post('/getModal/{modalId}/{additionalId?}', [ModalController::class, 'getModal'])
         ->name('getModal');
 
-    Route::get('/allTrainings', [TrainingsController::class, 'allTrainings'])
+    Route::get('/allTrainings', [TrainingsController::class, 'index'])
         ->name('trainings.index');
 
     Route::post('/training/create', [TrainingsController::class, 'create'])
         ->name('training.create');
+
+    Route::post('/training/{id}/edit', [TrainingsController::class, 'edit'])
+        ->name('training.edit');
 
     Route::post('/teacher/create', [TeacherController::class, 'create'])
         ->name('teacher.create');
@@ -52,14 +55,8 @@ Route::group([
     Route::post('/teachers/getOverview', [TeacherController::class, 'getTeachers'])
         ->name('teachers.getOverview');
 
-    Route::post('/trainings/getOverview', [TrainingsController::class, 'getTrainings'])
-        ->name('trainings.getOverview');
-
     Route::post('/user/create', [AdminController::class, 'createUser'])
         ->name('user.create');
-
-    Route::get('/allTrainings', [TrainingsController::class, 'allTrainings'])
-        ->name('trainings.index');
 
     Route::group([
         'prefix' => 'teacher/{id}',
@@ -67,8 +64,14 @@ Route::group([
         Route::get('/trainings', [TrainingsController::class, 'teacherTrainings'])
             ->name('teacher.trainings');
 
-        Route::get('/trainingEntry', [TrainingsController::class, 'trainingEntry'])
-            ->name('teacher.trainingEntry');
+        Route::post('getTrainingsOverview', [TrainingsController::class, 'getTeacherTrainingsOverview'])
+            ->name('teacher.getTrainingOverview');
+
+        Route::post('/training/{trainingId}/delete', [TrainingsController::class, 'deleteTeacherTraining'])
+            ->name('teacher.training.delete');
+
+        Route::post('/training/{trainingId}/edit', [TrainingsController::class, 'editTeacherTraining'])
+            ->name('teacher.training.edit');
 
         Route::get('/absences', [AbsencesController::class, 'teacherAbsences'])
             ->name('teacher.absences');
