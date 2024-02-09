@@ -17,8 +17,8 @@ return new class extends Migration {
                 ->constrained('trainings')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->date('training_from');
-            $table->date('training_until');
+            $table->date('from');
+            $table->date('until');
             $table->float('duration', 4,1)
                 ->comment('In days, half days are possible');
             $table->timestamps();

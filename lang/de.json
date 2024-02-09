@@ -340,5 +340,12 @@
     "Sick day not found": "Krankheitstag nicht gefunden",
     "Sick day could not be created": "Krankheitstag konnte nicht erstellt werden",
     "Sick day could not be updated": "Krankheitstag konnte nicht aktualisiert werden",
-    "Off duty day not found": "Dienstbefreiung nicht gefunden"
+    "Off duty day not found": "Dienstbefreiung nicht gefunden",
+    "Teacher overview": "Lehrerübersicht",
+    "No teachers are off today": "Heute fehlen keine Lehrer",
+    "Teachers off today": "Lehrer heute abwesend",
+    "Off duty": "Dienstbefreiung",
+    "Sick": "Krank",
+    "CIM needed": "BEM erforderlich",
+    "No teachers need a CIM": "Keine Lehrer benötigen ein BEM"
 }

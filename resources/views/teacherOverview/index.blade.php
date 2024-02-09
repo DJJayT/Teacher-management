@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('title')
-    {{ __('Home') }}
+    {{ __('Teacher overview') }}
 @endsection
 
 @section('extra-js')

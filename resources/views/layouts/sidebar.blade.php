@@ -17,6 +17,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('teachers.overview') }}" class="nav-link align-middle px-0">
+                                <i class="bi bi-person-standing fs-4"></i>
+                                <span class="ms-1 d-none d-xl-inline">{{ __('Teacher overview') }}</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('trainings.index') }}" class="nav-link align-middle px-0">
                                 <i class="bi bi-easel fs-4"></i>
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Trainings') }}</span>

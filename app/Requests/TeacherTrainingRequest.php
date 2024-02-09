@@ -10,8 +10,8 @@ class TeacherTrainingRequest extends FormRequest
     {
         return [
             'training_id' => ['required', 'integer', 'exists:trainings,id'],
-            'training_from' => ['required', 'date'],
-            'training_until' => ['required', 'date'],
+            'from' => ['required', 'date'],
+            'until' => ['required', 'date'],
             'duration' => ['nullable', 'numeric'],
         ];
     }

@@ -135,8 +135,8 @@ class TrainingsController extends Controller
 
         $training->update([
             'training_id' => $request->training_id,
-            'training_from' => $request->training_from,
-            'training_until' => $request->training_until,
+            'from' => $request->from,
+            'until' => $request->until,
             'duration' => $request->duration,
         ]);
 
@@ -166,8 +166,8 @@ class TrainingsController extends Controller
         $teacherTraining = TeacherTraining::create([
             'teacher_id' => $teacherId,
             'training_id' => $request->training_id,
-            'training_from' => $request->training_from,
-            'training_until' => $request->training_until,
+            'from' => $request->from,
+            'until' => $request->until,
             'duration' => $duration,
         ]);
 

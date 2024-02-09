@@ -10,14 +10,14 @@ class TeacherTraining extends Model
     protected $fillable = [
         'teacher_id',
         'training_id',
-        'training_from',
-        'training_until',
+        'from',
+        'until',
         'duration',
     ];
 
     protected $casts = [
-        'training_from' => 'date',
-        'training_until' => 'date',
+        'from' => 'date',
+        'until' => 'date',
     ];
 
     public function teacher(): HasOne

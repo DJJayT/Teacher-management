@@ -29,18 +29,18 @@
     </div>
     <div class="row">
         <div class="mb-2 col-md-6 col-sm-12">
-            <label for="training_from" class="form-label">{{ __('From') }} (*)</label>
-            <input type="date" class="form-control" name="training_from" id="training_from"
+            <label for="from" class="form-label">{{ __('From') }} (*)</label>
+            <input type="date" class="form-control" name="from" id="from"
                    @if(isset($teacherTraining))
-                       value="{{ $teacherTraining->training_from->format('Y-m-d') }}"
+                       value="{{ $teacherTraining->from->format('Y-m-d') }}"
                    @endif
                    required>
         </div>
         <div class="mb-2 col-md-6 col-sm-12">
-            <label for="training_until" class="form-label">{{ __('Until') }} (*)</label>
-            <input type="date" class="form-control" name="training_until" id="training_until"
+            <label for="until" class="form-label">{{ __('Until') }} (*)</label>
+            <input type="date" class="form-control" name="until" id="until"
                    @if(isset($teacherTraining))
-                       value="{{ $teacherTraining->training_until->format('Y-m-d') }}"
+                       value="{{ $teacherTraining->until->format('Y-m-d') }}"
                    @endif
                    required>
         </div>

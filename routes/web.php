@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\AbsencesController;
@@ -31,8 +32,11 @@ Route::group([
 Route::group([
     'middleware' => 'auth',
 ], function () {
-    Route::get('', [TeacherController::class, 'index'])
+    Route::get('/', [HomeController::class, 'index'])
         ->name('home');
+
+    Route::get('/teachers', [TeacherController::class, 'index'])
+        ->name('teachers.overview');
 
     Route::get('/logout', [LoginController::class, 'logout'])
         ->name('logout');
