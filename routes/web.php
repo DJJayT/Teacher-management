@@ -73,6 +73,9 @@ Route::group([
         Route::post('/training/{trainingId}/edit', [TrainingsController::class, 'editTeacherTraining'])
             ->name('teacher.training.edit');
 
+        Route::post('/training/create', [TrainingsController::class, 'createTeacherTraining'])
+            ->name('teacher.training.create');
+
         Route::get('/absences', [AbsencesController::class, 'teacherAbsences'])
             ->name('teacher.absences');
 
@@ -87,6 +90,24 @@ Route::group([
 
         Route::post('/edit', [TeacherController::class, 'edit'])
             ->name('teacher.edit');
+
+        Route::post('/sickDay/create', [AbsencesController::class, 'createSickDay'])
+            ->name('teacher.sickDay.create');
+
+        Route::post('/offDutyDay/create', [AbsencesController::class, 'createOffDutyDay'])
+            ->name('teacher.offDutyDay.create');
+
+        Route::get('/offDutyDay/{offDutyDayId}/delete', [AbsencesController::class, 'deleteOffDutyDay'])
+            ->name('teacher.offDutyDay.delete');
+
+        Route::get('/sickDay/{sickDayId}/delete', [AbsencesController::class, 'deleteSickDay'])
+            ->name('teacher.sickDay.delete');
+
+        Route::post('/sickDay/{sickDayId}/edit', [AbsencesController::class, 'editSickDay'])
+            ->name('teacher.sickDay.edit');
+
+        Route::post('/offDutyDay/{offDutyDayId}/edit', [AbsencesController::class, 'editOffDutyDay'])
+            ->name('teacher.offDutyDay.edit');
     });
 
     Route::group([
@@ -94,7 +115,7 @@ Route::group([
             'role:admin'
         ],
         'prefix' => 'admin'
-    ], function() {
+    ], function () {
         Route::get('/userManagement', [AdminController::class, 'userManagement'])
             ->name('admin.userManagement');
     });
@@ -104,7 +125,7 @@ Route::group([
             'role:admin'
         ],
         'prefix' => '/user/{id}'
-    ], function() {
+    ], function () {
         Route::post('/edit', [AdminController::class, 'editUser'])
             ->name('user.edit');
 

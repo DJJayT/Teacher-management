@@ -15,7 +15,11 @@
             </select>
         </div>
         <div class="mb-2 col-md-6 col-sm-12">
-            <label for="duration">{{ __('Duration') }} (*)</label>
+            <label for="duration">{{ __('Duration in days') }}
+                @if(isset($teacherTraining))
+                    - <b>{{ __('Check the count of days') }}</b>
+                @endif
+            </label>
             <input type="number" class="form-control" name="duration" id="duration"
                    @if(isset($teacherTraining))
                        value="{{ $teacherTraining->duration }}"
@@ -40,4 +44,5 @@
                    @endif
                    required>
         </div>
+    </div>
 </form>

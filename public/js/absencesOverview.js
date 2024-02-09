@@ -1,6 +1,8 @@
 class absencesOverview {
 
     teacherId = null;
+    sickDayId = null;
+    offDutyDayId = null;
     month = null;
     year = null;
 
@@ -13,9 +15,17 @@ class absencesOverview {
         $(function () {
             self.setCalendarEvent(self);
             self.getTeacherId(self);
-            self.setSickDaysPaginationButtonsEvent(self);
-            self.setOffDutyPaginationButtonsEvent(self);
+            self.setListEvents(self);
         });
+    }
+
+    setListEvents(self) {
+        self.setSickDaysPaginationButtonsEvent(self);
+        self.setOffDutyPaginationButtonsEvent(self);
+        self.setSickDayCreateButtonEvent(self);
+        self.setSickDayDeleteButtonEvent(self);
+        self.setSickDayEditButtonEvent(self);
+        self.setOffDutyDayDeleteButtonEvent(self);
     }
 
     setCalendarEvent(self) {
@@ -36,8 +46,7 @@ class absencesOverview {
 
                 utilities.postAjax(url, {}, function (success) {
                     $('.absencesList').html(success);
-                    self.setSickDaysPaginationButtonsEvent(self);
-                    self.setOffDutyPaginationButtonsEvent(self);
+                    self.setListEvents(self);
                     console.log(success)
                 }, self);
 
@@ -103,6 +112,66 @@ class absencesOverview {
         $('.sickDaysPagination').remove();
         $('.sickDayList').find('.list-group').replaceWith(response);
         self.setSickDaysPaginationButtonsEvent(self);
+    }
+
+    setSickDayCreateButtonEvent(self) {
+        $('.createSickDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            let teacherId = $(this).data('teacherid');
+
+            modal.getModal(modalId, self, self.submitCreateSickDay, teacherId);
+        });
+    }
+
+    submitCreateSickDay(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            $(newModal).find('#sickDayForm').submit();
+        });
+    }
+
+    setSickDayDeleteButtonEvent(self) {
+        $('.deleteSickDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            self.sickDayId = $(this).data('sickdayid');
+
+            modal.getModal(modalId, self, self.submitDeleteSickDay);
+        });
+    }
+
+    submitDeleteSickDay(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            window.location.href = '/teacher/' + self.teacherId + '/sickDay/' + self.sickDayId + '/delete';
+        });
+    }
+
+    setSickDayEditButtonEvent(self) {
+        $('.editSickDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            self.sickDayId = $(this).data('sickdayid');
+
+            modal.getModal(modalId, self, self.submitEditSickDay, self.sickDayId);
+        });
+    }
+
+    submitEditSickDay(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            $(newModal).find('#sickDayForm').submit();
+        });
+    }
+
+    setOffDutyDayDeleteButtonEvent(self) {
+        $('.deleteOffDutyDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            self.offDutyDayId = $(this).data('offdutydayid');
+
+            modal.getModal(modalId, self, self.submitDeleteOffDutyDay);
+        });
+    }
+
+    submitDeleteOffDutyDay(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            window.location.href = '/teacher/' + self.teacherId + '/offDutyDay/' + self.offDutyDayId + '/delete';
+        });
     }
 }
 

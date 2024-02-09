@@ -28,6 +28,16 @@
                         ])>
                     </p>
                 </div>
+                <div class="offDutyDayActions">
+                    <button type="button" class="btn btn-primary editOffDutyDayButton" data-modalId="11"
+                            data-offDutyDayId="{{ $offDutyDay->id }}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger deleteOffDutyDayButton" data-modalId="1"
+                            data-offDutyDayId="{{ $offDutyDay->id }}">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
             </li>
         @endforeach
     @endif

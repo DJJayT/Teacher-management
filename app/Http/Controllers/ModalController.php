@@ -9,8 +9,10 @@ use App\Models\Gender;
 use App\Models\JobTitle;
 use App\Models\Provider;
 use App\Models\SalaryGrade;
+use App\Models\SickTimeReason;
 use App\Models\StatusType;
 use App\Models\Teacher;
+use App\Models\TeacherSickTime;
 use App\Models\TeacherTraining;
 use App\Models\Training;
 use App\Models\User;
@@ -32,6 +34,8 @@ class ModalController extends Controller
         7 => 'getTrainingEditModal',
         8 => 'getTeacherTrainingEditModal',
         9 => 'getTeacherTrainingCreateModal',
+        10 => 'getSickDayCreateModal',
+        11 => 'getSickDayEditModal',
     ];
 
     /**
@@ -271,7 +275,7 @@ class ModalController extends Controller
         $route = route('teacher.training.edit', ['id' => $teacherTraining->teacher_id,'trainingId' => $trainingId]);
 
         $modal = new ModalResponse();
-        $modal->title = __('Edit Training');
+        $modal->title = __('Edit training');
         $modal->body = view('teacherTrainings.teacherTrainingsForm', [
             'teacherTraining' => $teacherTraining,
             'trainings' => Training::all(),
@@ -281,15 +285,64 @@ class ModalController extends Controller
         return $modal;
     }
 
+    /**
+     * Returns the create teacher training modal
+     * @param int $teacherId
+     * @return ModalResponse
+     * @modalId 9
+     */
     private function getTeacherTrainingCreateModal(int $teacherId): ModalResponse
     {
         $route = route('teacher.training.create', ['id' => $teacherId]);
 
         $modal = new ModalResponse();
-        $modal->title = __('Create Training');
+        $modal->title = __('Create training');
         $modal->body = view('teacherTrainings.teacherTrainingsForm', [
             'route' => $route,
             'trainings' => Training::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    /**
+     * Returns the create sick day modal
+     * @param int $teacherId
+     * @return ModalResponse
+     * @modalId 10
+     */
+    private function getSickDayCreateModal(int $teacherId): ModalResponse
+    {
+        $route = route('teacher.sickDay.create', ['id' => $teacherId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Create sick day');
+        $modal->body = view('absences.sickDayForm', [
+            'route' => $route,
+            'reasons' => SickTimeReason::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    /**
+     * Returns the edit sick day modal
+     * @param int $sickDayId
+     * @return ModalResponse
+     * @modalId 11
+     */
+    private function getSickDayEditModal(int $sickDayId): ModalResponse
+    {
+        $sickDay = TeacherSickTime::find($sickDayId);
+
+        $route = route('teacher.sickDay.edit', ['id' => $sickDay->teacher_id, 'sickDayId' => $sickDayId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Edit sick day');
+        $modal->body = view('absences.sickDayForm', [
+            'sickDay' => $sickDay,
+            'route' => $route,
+            'reasons' => SickTimeReason::all(),
         ])->render();
 
         return $modal;

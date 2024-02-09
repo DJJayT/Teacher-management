@@ -7,22 +7,22 @@
         @foreach($sickDays as $sickDay)
             <li class="list-group-item d-flex justify-content-between">
                 <div class="sickDayInfos">
-                    <p class="m-0 dates d-inline-block">
+                    @if(isset($sickDay->teaching_days))
+                        <span class="badge bg-primary">
+                                {{ __('Teaching days: :days', ['days' => $sickDay->teaching_days]) }}
+                            </span>
+                    @endif
+                    @if(isset($sickDay->total_days))
+                        <span class="badge bg-secondary">
+                                {{ __('Total days: :days', ['days' => $sickDay->total_days]) }}
+                            </span>
+                    @endif
+                    <p class="m-0 dates">
                         {{ $sickDay->from->format("d.m.Y") }} -
                         @if($sickDay->until != null)
                             {{ $sickDay->until->format("d.m.Y") }}
                         @endif
                     </p>
-                    @if(isset($sickDay->teaching_days))
-                        <span class="badge bg-primary ms-2">
-                                {{ __('Teaching days: :days', ['days' => $sickDay->teaching_days]) }}
-                            </span>
-                    @endif
-                    @if(isset($sickDay->total_days))
-                        <span class="badge bg-secondary ms-2">
-                                {{ __('Total days: :days', ['days' => $sickDay->total_days]) }}
-                            </span>
-                    @endif
                     <p class="text-muted m-0">
                         {{ __('Reason') }}: {{ $sickDay->reason->reason }}
                     </p>
@@ -48,6 +48,16 @@
                             {{ __('Unexcused') }}
                         @endif
                     </p>
+                </div>
+                <div class="sickDayActions">
+                    <button type="button" class="btn btn-primary editSickDayButton" data-modalId="11"
+                            data-sickDayId="{{ $sickDay->id }}">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger deleteSickDayButton" data-modalId="1"
+                            data-sickDayId="{{ $sickDay->id }}">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
             </li>
         @endforeach

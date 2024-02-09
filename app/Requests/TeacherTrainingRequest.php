@@ -12,7 +12,7 @@ class TeacherTrainingRequest extends FormRequest
             'training_id' => ['required', 'integer', 'exists:trainings,id'],
             'training_from' => ['required', 'date'],
             'training_until' => ['required', 'date'],
-            'duration' => ['required', 'numeric'],
+            'duration' => ['nullable', 'numeric'],
         ];
     }
 }
