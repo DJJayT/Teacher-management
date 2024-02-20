@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\AssessmentObstacle;
 use App\Models\AssessmentType;
+use App\Models\OffDutyReason;
 use App\Models\Gender;
 use App\Models\JobTitle;
 use App\Models\Provider;
@@ -12,6 +13,7 @@ use App\Models\SalaryGrade;
 use App\Models\SickTimeReason;
 use App\Models\StatusType;
 use App\Models\Teacher;
+use App\Models\TeacherOffDuty;
 use App\Models\TeacherSickTime;
 use App\Models\TeacherTraining;
 use App\Models\Training;
@@ -20,6 +22,7 @@ use App\Responses\ModalResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Throwable;
 
 class ModalController extends Controller
 {
@@ -36,6 +39,8 @@ class ModalController extends Controller
         9 => 'getTeacherTrainingCreateModal',
         10 => 'getSickDayCreateModal',
         11 => 'getSickDayEditModal',
+        12 => 'getOffDutyDayCreateModal',
+        13 => 'getOffDutyDayEditModal',
     ];
 
     /**
@@ -116,6 +121,7 @@ class ModalController extends Controller
      * Returns the teacher edit modal
      * @param int $teacherId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 2
      */
     private function getTeacherEditModal(int $teacherId): ModalResponse
@@ -143,6 +149,7 @@ class ModalController extends Controller
     /**
      * Returns the teacher-create-modal
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 3
      */
     private function getTeacherCreateModal(): ModalResponse
@@ -167,6 +174,7 @@ class ModalController extends Controller
     /**
      * Returns the user-create-modal
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 4
      */
     private function getUserCreateModal(): ModalResponse
@@ -191,6 +199,7 @@ class ModalController extends Controller
      * Returns the user-edit-modal
      * @param int $userId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 5
      */
     private function getUserEditModal(int $userId): ModalResponse
@@ -221,6 +230,7 @@ class ModalController extends Controller
     /**
      * Returns the create training modal
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 6
      */
     private function getCreateTrainingModal(): ModalResponse
@@ -242,6 +252,7 @@ class ModalController extends Controller
      * Returns the edit training modal
      * @param int $trainingId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 7
      */
     private function getTrainingEditModal(int $trainingId): ModalResponse
@@ -266,6 +277,7 @@ class ModalController extends Controller
      * Returns the edit teacher training modal
      * @param int $trainingId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 8
      */
     private function getTeacherTrainingEditModal(int $trainingId): ModalResponse
@@ -289,6 +301,7 @@ class ModalController extends Controller
      * Returns the create teacher training modal
      * @param int $teacherId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 9
      */
     private function getTeacherTrainingCreateModal(int $teacherId): ModalResponse
@@ -309,6 +322,7 @@ class ModalController extends Controller
      * Returns the create sick day modal
      * @param int $teacherId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 10
      */
     private function getSickDayCreateModal(int $teacherId): ModalResponse
@@ -329,6 +343,7 @@ class ModalController extends Controller
      * Returns the edit sick day modal
      * @param int $sickDayId
      * @return ModalResponse
+     * @throws Throwable
      * @modalId 11
      */
     private function getSickDayEditModal(int $sickDayId): ModalResponse
@@ -343,6 +358,51 @@ class ModalController extends Controller
             'sickDay' => $sickDay,
             'route' => $route,
             'reasons' => SickTimeReason::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    /**
+     * Returns the create off duty day modal
+     * @param int $teacherId
+     * @return ModalResponse
+     * @throws Throwable
+     * @modalId 12
+     */
+    private function getOffDutyDayCreateModal(int $teacherId): ModalResponse
+    {
+        $route = route('teacher.offDutyDay.create', ['id' => $teacherId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Create off duty day');
+        $modal->body = view('absences.offDutyDayForm', [
+            'route' => $route,
+            'reasons' => OffDutyReason::all(),
+        ])->render();
+
+        return $modal;
+    }
+
+    /**
+     * Returns the edit off duty day modal
+     * @param int $offDutyDayId
+     * @return ModalResponse
+     * @throws Throwable
+     * @modalId 13
+     */
+    private function getOffDutyDayEditModal(int $offDutyDayId): ModalResponse
+    {
+        $offDutyDay = TeacherOffDuty::find($offDutyDayId);
+
+        $route = route('teacher.offDutyDay.edit', ['id' => $offDutyDay->teacher_id, 'offDutyDayId' => $offDutyDayId]);
+
+        $modal = new ModalResponse();
+        $modal->title = __('Edit off duty day');
+        $modal->body = view('absences.offDutyDayForm', [
+            'offDutyDay' => $offDutyDay,
+            'route' => $route,
+            'reasons' => OffDutyReason::all(),
         ])->render();
 
         return $modal;

@@ -23,6 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'abbreviation',
+        'dark_mode',
     ];
 
     /**
@@ -43,6 +45,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'dark_mode' => 'boolean',
     ];
 
     public function getRoleName(): string

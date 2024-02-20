@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Requests\UserRequest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    /**
+     * Shows the admin dashboard
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @route /admin/userManagement
+     * @method GET
+     */
     public function userManagement()
     {
         $users = User::paginate(15);
@@ -19,6 +29,13 @@ class AdminController extends Controller
         ]);
     }
 
+    /**
+     * Shows the admin dashboard
+     * @param UserRequest $request
+     * @param int $userId
+     * @return RedirectResponse
+     * @route /user/{id}/edit
+     */
     public function editUser(UserRequest $request, int $userId)
     {
         $user = User::find($userId);
@@ -41,6 +58,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success', __('User successfully edited'));
     }
 
+    /**
+     * Creates a new user
+     * @param UserRequest $request
+     * @return RedirectResponse
+     * @route /user/create
+     * @method POST
+     */
     public function createUser(UserRequest $request)
     {
         $role = $request->role;
@@ -68,6 +92,13 @@ class AdminController extends Controller
         return redirect()->back()->with('success', __('User successfully created'));
     }
 
+    /**
+     * Deletes a user
+     * @param int $userId
+     * @return RedirectResponse
+     * @route /user/{id}/delete
+     * @method GET
+     */
     public function deleteUser(int $userId)
     {
         $user = User::find($userId);

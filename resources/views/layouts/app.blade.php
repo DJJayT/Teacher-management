@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ App::currentLocale() }}" data-bs-theme="dark">
+<html lang="{{ App::currentLocale() }}"
+      @if(Auth::check() && Auth::user()->dark_mode) data-bs-theme="dark" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">

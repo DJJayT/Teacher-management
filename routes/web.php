@@ -35,6 +35,9 @@ Route::group([
     Route::get('/', [HomeController::class, 'index'])
         ->name('home');
 
+    Route::get('/changeDarkMode', [HomeController::class, 'changeDarkMode'])
+        ->name('changeDarkMode');
+
     Route::get('/teachers', [TeacherController::class, 'index'])
         ->name('teachers.overview');
 
@@ -60,6 +63,7 @@ Route::group([
         ->name('teachers.getOverview');
 
     Route::post('/user/create', [AdminController::class, 'createUser'])
+        ->middleware('role:admin')
         ->name('user.create');
 
     Route::group([

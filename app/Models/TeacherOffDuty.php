@@ -28,6 +28,6 @@ class TeacherOffDuty extends Model
 
     public function reason(): HasOne
     {
-        return $this->hasOne(ExemptionOffDutyReason::class, 'id', 'reason_type_id');
+        return $this->hasOne(OffDutyReason::class, 'id', 'reason_type_id');
     }
 }

@@ -11,7 +11,7 @@ class SickDayRequest extends FormRequest
         return [
             'from' => ['required', 'date'],
             'until' => ['required', 'date'],
-            'teaching_days' => ['nullable', 'integer'],
+            'teaching_days' => ['nullable', 'numeric'],
             'total_days' => ['nullable', 'integer'],
             'reason_type_id' => ['required', 'integer', 'exists:sick_time_reasons,id'],
             'certificate' => ['boolean'],
@@ -20,11 +20,11 @@ class SickDayRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation()
+    protected function prepareForValidation(): void
     {
         $this->merge([
-            'certificate' => $this->certificate === "on" ? true : false,
-            'hospital' => $this->hospital === "on" ? true : false,
+            'certificate' => $this->certificate === "on",
+            'hospital' => $this->hospital === "on",
         ]);
     }
 }

@@ -11,6 +11,9 @@ use App\Requests\TeacherTrainingRequest;
 use App\Requests\TrainingRequest;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -18,7 +21,7 @@ class TrainingsController extends Controller
 {
     /**
      * Returns the view with all trainings
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      * @method GET
      * @route /allTrainings
      */
@@ -35,7 +38,7 @@ class TrainingsController extends Controller
     /**
      * Returns the view with all trainings of a teacher
      * @param int $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      * @method GET
      * @route /teacher/{id}/trainings
      */
@@ -43,7 +46,7 @@ class TrainingsController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         $trainings = $teacher->trainings()
-            ->orderBy('training_until')
+            ->orderBy('until')
             ->paginate(1);
 
         return view('teacherTrainings.index')
@@ -156,9 +159,9 @@ class TrainingsController extends Controller
     public function createTeacherTraining(int $teacherId, TeacherTrainingRequest $request)
     {
         if ($request->duration == null) {
-            $duration = round(Carbon::parse($request->training_from)
+            $duration = round(Carbon::parse($request->from)
                 ->startOfDay()
-                ->floatDiffInDays(Carbon::parse($request->training_until)->endOfDay()));
+                ->floatDiffInDays(Carbon::parse($request->until)->endOfDay()));
         } else {
             $duration = $request->duration;
         }

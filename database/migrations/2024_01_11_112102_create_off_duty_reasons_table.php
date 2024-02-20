@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('exemption_off_duty_reasons', function (Blueprint $table) {
+        Schema::create('off_duty_reasons', function (Blueprint $table) {
             $table->id();
             $table->string('reason');
             $table->timestamps();
@@ -16,6 +16,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('exemption_off_duty_reasons');
+        Schema::dropIfExists('off_duty_reasons');
     }
 };

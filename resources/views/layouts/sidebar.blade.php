@@ -48,6 +48,19 @@
                         @endrole
                         <hr>
                         <li class="nav-item">
+                            <a href="{{ route('changeDarkMode') }}" class="nav-link px-0 align-middle">
+                                <i @class([
+                                    'bi',
+                                    'fs-4',
+                                    'bi-moon-fill' => !Auth::user()->dark_mode,
+                                    'bi-brightness-high-fill' => Auth::user()->dark_mode,
+                                ])></i>
+                                <span class="ms-1 d-none d-xl-inline">
+                                    {{ Auth::user()->dark_mode ? __('Light mode') : __('Dark mode') }}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link px-0 align-middle">
                                 <i class="bi bi-box-arrow-right fs-4"></i>
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Logout') }}</span>

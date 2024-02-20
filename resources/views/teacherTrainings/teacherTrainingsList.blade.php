@@ -13,8 +13,8 @@
                 </p>
                 <p class="text-muted m-0 mb-2">
                     {{ __('From :from until :until',[
-                            'from' => $training->training_from->format('d.m.Y'),
-                            'until' => $training->training_until->format('d.m.Y')
+                            'from' => $training->from->format('d.m.Y'),
+                            'until' => $training->until->format('d.m.Y')
                             ]) }} - {{ __('Total days: :days', ['days' => $training->duration]) }}
                 </p>
             </div>

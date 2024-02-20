@@ -2,70 +2,70 @@
 
 namespace Database\Seeders;
 
-use App\Models\ExemptionOffDutyReason;
+use App\Models\OffDutyReason;
 use Illuminate\Database\Seeder;
 
-class ExemtionOffDutyReasonSeeder extends Seeder
+class OffDutyReasonSeeder extends Seeder
 {
     public function run(): void
     {
-        $exemtionOffDutyReasons = [];
+        $offDutyDayReasons = [];
 
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 1,
             'reason' => 'Arztbesuch',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 2,
             'reason' => 'Umzug',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 3,
             'reason' => 'Geburt',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 4,
             'reason' => 'Todesfall',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 5,
             'reason' => 'Erkrankung eines Kindes',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 6,
             'reason' => 'Pflegeorganisation',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 7,
             'reason' => 'Fortbildung',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 8,
             'reason' => 'Sonstiges',
             'created_at' => now(),
             'updated_at' => now()
         ];
-        $exemtionOffDutyReasons[] = [
+        $offDutyDayReasons[] = [
             'id' => 9,
             'reason' => 'Dienstjubiläum',
             'created_at' => now(),
             'updated_at' => now()
         ];
 
-        ExemptionOffDutyReason::insert($exemtionOffDutyReasons);
+        OffDutyReason::insert($offDutyDayReasons);
     }
 }

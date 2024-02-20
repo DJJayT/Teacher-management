@@ -7,17 +7,17 @@
         @foreach($offDutyDays as $offDutyDay)
             <li class="list-group-item d-flex justify-content-between">
                 <div class="offDutyDayInfos">
-                    <p class="m-0 dates d-inline-block">
+                    @if(isset($offDutyDay->teaching_days))
+                        <span class="badge bg-primary">
+                                {{ __('Teaching days: :days', ['days' => $offDutyDay->teaching_days]) }}
+                            </span>
+                    @endif
+                    <p class="m-0 dates">
                         {{ $offDutyDay->from->format("d.m.Y")}} -
                         @if($offDutyDay->until != null)
                             {{$offDutyDay->until->format("d.m.Y")}}
                         @endif
                     </p>
-                    @if(isset($offDutyDay->teaching_days))
-                        <span class="badge bg-primary ms-2">
-                                {{ __('Teaching days: :days', ['days' => $offDutyDay->teaching_days]) }}
-                            </span>
-                    @endif
                     <p class="text-muted">
                         {{ __('Reason') }}: {{ $offDutyDay->reason->reason }}
                     </p>
@@ -29,7 +29,7 @@
                     </p>
                 </div>
                 <div class="offDutyDayActions">
-                    <button type="button" class="btn btn-primary editOffDutyDayButton" data-modalId="11"
+                    <button type="button" class="btn btn-primary editOffDutyDayButton" data-modalId="13"
                             data-offDutyDayId="{{ $offDutyDay->id }}">
                         <i class="bi bi-pencil"></i>
                     </button>

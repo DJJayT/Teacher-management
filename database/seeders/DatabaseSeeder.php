@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ProviderSeeder::class,
             AreaSeeder::class,
             SickTimeReasonSeeder::class,
-            ExemtionOffDutyReasonSeeder::class,
+            OffDutyReasonSeeder::class,
             UserSeeder::class,
             PermissionSeeder::class,
             RoleSeeder::class,

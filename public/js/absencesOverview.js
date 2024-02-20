@@ -25,7 +25,9 @@ class absencesOverview {
         self.setSickDayCreateButtonEvent(self);
         self.setSickDayDeleteButtonEvent(self);
         self.setSickDayEditButtonEvent(self);
+        self.setOffDutyDayCreateButtonEvent(self);
         self.setOffDutyDayDeleteButtonEvent(self);
+        self.setOffDutyDayEditButtonEvent(self);
     }
 
     setCalendarEvent(self) {
@@ -171,6 +173,30 @@ class absencesOverview {
     submitDeleteOffDutyDay(self, newModal) {
         $(newModal).find('.submitButton').on('click', function () {
             window.location.href = '/teacher/' + self.teacherId + '/offDutyDay/' + self.offDutyDayId + '/delete';
+        });
+    }
+
+    setOffDutyDayCreateButtonEvent(self) {
+        $('.createOffDutyDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            let teacherId = $(this).data('teacherid');
+
+            modal.getModal(modalId, self, self.submitOffDutyDayForm, teacherId);
+        });
+    }
+
+    setOffDutyDayEditButtonEvent(self) {
+        $('.editOffDutyDayButton').on('click', function () {
+            let modalId = $(this).data('modalid');
+            self.offDutyDayId = $(this).data('offdutydayid');
+
+            modal.getModal(modalId, self, self.submitOffDutyDayForm, self.offDutyDayId);
+        });
+    }
+
+    submitOffDutyDayForm(self, newModal) {
+        $(newModal).find('.submitButton').on('click', function () {
+            $(newModal).find('#offDutyDayForm').submit();
         });
     }
 }

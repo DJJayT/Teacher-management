@@ -347,5 +347,9 @@
     "Off duty": "Dienstbefreiung",
     "Sick": "Krank",
     "CIM needed": "BEM erforderlich",
-    "No teachers need a CIM": "Keine Lehrer benötigen ein BEM"
+    "No teachers need a CIM": "Keine Lehrer benötigen ein BEM",
+    "Teacher not found": "Lehrer nicht gefunden",
+    "Light mode successfully changed": "Lichtmodus erfolgreich geändert",
+    "Dark mode": "Dunkler Modus",
+    "Light mode": "Heller Modus"
 }

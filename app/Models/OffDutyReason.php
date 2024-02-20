@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class ExemptionOffDutyReason extends Model
+class OffDutyReason extends Model
 {
     protected $fillable = [
         'reason',
     ];
 
-    public function teacherExemptionOffDuties(): BelongsToMany
+    public function teacherOffDuties(): BelongsToMany
     {
         return $this->belongsToMany(TeacherOffDuty::class);
     }

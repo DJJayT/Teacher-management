@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Collection;
 class cimCalculationService
 {
 
-    public function calculateCim()
+    /**
+     * Calculates if a teacher needs a CIM (BEM in German) (6 weeks sick or 42 days sick in a year)
+     * @return Collection
+     */
+    public function calculateCim(): Collection
     {
         $startOfYear = now()->startOfYear();
         $endOfYear = now()->endOfYear();
@@ -21,11 +25,14 @@ class cimCalculationService
         $cimTeachersSixWeeks = $this->calculateCimSixWeeks($sickDays);
         $cimTeachersTotalDays = $this->calculateCimTotalDays($sickDays);
 
-        $cimTeachers = (new Collection())->merge($cimTeachersSixWeeks)->merge($cimTeachersTotalDays);
-
-        return $cimTeachers;
+        return (new Collection())->merge($cimTeachersSixWeeks)->merge($cimTeachersTotalDays);
     }
 
+    /**
+     * Calculates if a teacher needs a CIM (BEM in German) - 6 weeks sick
+     * @param Collection $sickDays
+     * @return Collection
+     */
     private function calculateCimSixWeeks(Collection $sickDays): Collection
     {
         $cimTeachers = new Collection();
@@ -41,6 +48,11 @@ class cimCalculationService
         return $cimTeachers;
     }
 
+    /**
+     * Calculates if a teacher needs a CIM (BEM in German) - 42 days sick in a year
+     * @param Collection $sickDays
+     * @return Collection
+     */
     public function calculateCimTotalDays(Collection $sickDays): Collection
     {
         $teacherSickDays = new Collection();

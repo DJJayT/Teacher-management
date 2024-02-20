@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Throwable;
 
 class TeacherController extends Controller
 {
@@ -17,7 +18,7 @@ class TeacherController extends Controller
      * Shows the overview of all teachers
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      * @method GET
-     * @route /}
+     * @route /teachers
      */
     public function index()
     {
@@ -35,6 +36,9 @@ class TeacherController extends Controller
      * Returns the teacher list for the teacher overview
      * @param Request $request
      * @return string
+     * @throws Throwable
+     * @route /teachers/getOverview
+     * @method POST
      */
     public function getTeachers(Request $request)
     {

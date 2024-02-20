@@ -7,10 +7,19 @@ use App\Models\TeacherSickTime;
 use App\Models\TeacherTraining;
 use App\Services\cimCalculationService;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    /**
+     * Shows the home dashboard
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     public function index()
     {
         $sickToday = TeacherSickTime::where('from', '<=', Carbon::now())
@@ -38,5 +47,18 @@ class HomeController extends Controller
                 'offToday' => $offToday,
                 'cimNeeded' => $cimNeeded,
             ]);
+    }
+
+    /**
+     * Changes the dark mode of the user
+     * @return RedirectResponse
+     */
+    public function changeDarkMode()
+    {
+        $user = Auth::user();
+        $user->dark_mode = !$user->dark_mode;
+        $user->save();
+
+        return redirect()->back()->with('success', __('Light mode successfully changed'));
     }
 }
