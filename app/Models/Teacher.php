@@ -46,7 +46,7 @@ class Teacher extends Model
 
     public function gender(): HasOne
     {
-        return $this->hasOne(Gender::class);
+        return $this->hasOne(Gender::class, 'id', 'gender_id');
     }
 
     public function jobTitle(): BelongsTo
@@ -56,7 +56,7 @@ class Teacher extends Model
 
     public function salaryGrade(): HasOne
     {
-        return $this->hasOne(SalaryGrade::class);
+        return $this->hasOne(SalaryGrade::class, 'id', 'salary_grade_id');
     }
 
     public function status(): BelongsTo

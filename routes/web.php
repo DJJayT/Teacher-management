@@ -35,6 +35,9 @@ Route::group([
     Route::get('/', [HomeController::class, 'index'])
         ->name('home');
 
+    Route::get('/stats/{year?}', [HomeController::class, 'showSickStats'])
+        ->name('stats');
+
     Route::get('/changeDarkMode', [HomeController::class, 'changeDarkMode'])
         ->name('changeDarkMode');
 

@@ -351,5 +351,22 @@
     "Teacher not found": "Lehrer nicht gefunden",
     "Light mode successfully changed": "Lichtmodus erfolgreich geändert",
     "Dark mode": "Dunkler Modus",
-    "Light mode": "Heller Modus"
+    "Light mode": "Heller Modus",
+    "Statistics": "Statistiken",
+    "Civil servants": "Beamte",
+    "Workers": "Arbeitnehmer",
+    "Total staff": "Gesamtpersonal",
+    "Headcount": "Personalbestand",
+    "Shorttime": "Kurzzeit",
+    "Longtime": "Langzeit",
+    "Miscellaneous": "Sonstige",
+    "up to 3 workdays": "bis zu 3 Arbeitstagen",
+    "over 6 weeks": "über 6 Wochen",
+    "4 workdays to 6 weeks": "4 Arbeitstage bis 6 Wochen",
+    "From A13 or E13 and comparable": "Ab A13 oder E13 und vergleichbar",
+    "A9-A12, E9-E12 and comparable": "A9-A12, E9-E12 und vergleichbar",
+    "Until A8 or E8 and comparable": "Bis A8 oder E8 und vergleichbar",
+    "Illness": "Krankheit",
+    "missed working days": "versäumte Arbeitstage",
+    "Statistics for year :year": "Statistiken für das Jahr :year"
 }

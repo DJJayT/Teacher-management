@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gender;
 use App\Models\TeacherOffDuty;
 use App\Models\TeacherSickTime;
 use App\Models\TeacherTraining;
 use App\Services\cimCalculationService;
+use App\Services\sickStatsCalculationService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -52,6 +54,8 @@ class HomeController extends Controller
     /**
      * Changes the dark mode of the user
      * @return RedirectResponse
+     * @route /changeDarkMode
+     * @method GET
      */
     public function changeDarkMode()
     {
@@ -60,5 +64,31 @@ class HomeController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', __('Light mode successfully changed'));
+    }
+
+    /**
+     * Shows the sick stats of the given year
+     * @param int|null $year
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|\Illuminate\View\View
+     * @route /stats/{year?}
+     * @method GET
+     */
+    public function showSickStats(int $year = null)
+    {
+        if ($year === null) {
+            $date = Carbon::now()->startOfYear();
+        } else {
+            $date = Carbon::create($year);
+        }
+
+        $sickCalculationService = new sickStatsCalculationService();
+        $stats = $sickCalculationService->calculateTotalStats($date);
+
+        return view('stats.index')
+            ->with([
+                'stats' => $stats,
+                'genders' => Gender::all(),
+                'year' => $date->year
+            ]);
     }
 }

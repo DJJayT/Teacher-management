@@ -28,6 +28,12 @@
                                 <span class="ms-1 d-none d-xl-inline">{{ __('Trainings') }}</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('stats') }}" class="nav-link align-middle px-0">
+                                <i class="bi bi-bar-chart-line-fill fs-4"></i>
+                                <span class="ms-1 d-none d-xl-inline">{{ __('Statistics') }}</span>
+                            </a>
+                        </li>
                         @role('admin')
                         <li class="nav-item dropdown">
                             <a class="nav-link px-0 align-middle" href="#adminMenu" data-bs-toggle="collapse"

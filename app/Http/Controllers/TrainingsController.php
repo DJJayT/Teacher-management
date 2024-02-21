@@ -29,7 +29,7 @@ class TrainingsController extends Controller
     {
         return view('allTrainings.index')
             ->with([
-                'trainings' => Training::paginate(1),
+                'trainings' => Training::paginate(15),
                 'areas' => Area::all(),
                 'providers' => Provider::all(),
             ]);
@@ -47,7 +47,7 @@ class TrainingsController extends Controller
         $teacher = Teacher::findOrFail($id);
         $trainings = $teacher->trainings()
             ->orderBy('until')
-            ->paginate(1);
+            ->paginate(15);
 
         return view('teacherTrainings.index')
             ->with([
