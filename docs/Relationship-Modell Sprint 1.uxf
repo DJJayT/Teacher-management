@@ -5,13 +5,17 @@
     <id>UMLClass</id>
     <coordinates>
       <x>110</x>
-      <y>80</y>
+      <y>60</y>
       <w>320</w>
-      <h>360</h>
+      <h>420</h>
     </coordinates>
     <panel_attributes>*Teacher*
 --
 id: int, primary
+--
+firstname: string
+--
+lastname: string
 --
 abbreviation: string, unique
 --
@@ -66,10 +70,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>90</y>
       <w>230</w>
-      <h>150</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;130.0;180.0;130.0;180.0;10.0;210.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;180.0;150.0;180.0;10.0;210.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -92,10 +96,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>90</y>
       <w>380</w>
-      <h>170</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;150.0;330.0;150.0;330.0;10.0;360.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;330.0;170.0;330.0;10.0;360.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -118,10 +122,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>90</y>
       <w>600</w>
-      <h>190</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;170.0;550.0;170.0;550.0;10.0;580.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;550.0;190.0;550.0;10.0;580.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -144,10 +148,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>90</y>
       <w>760</w>
-      <h>250</h>
+      <h>390</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;230.0;720.0;230.0;720.0;10.0;740.0;10.0</additional_attributes>
+    <additional_attributes>10.0;370.0;720.0;370.0;720.0;10.0;740.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -155,10 +159,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>310</y>
       <w>740</w>
-      <h>140</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;120.0;720.0;120.0;720.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;720.0;40.0;720.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -259,12 +263,12 @@ duration: float (IN DAYS)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>50</x>
-      <y>100</y>
+      <y>80</y>
       <w>80</w>
-      <h>650</h>
+      <h>670</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0;10.0;630.0;60.0;630.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0;10.0;650.0;60.0;650.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -365,7 +369,7 @@ reason: int</panel_attributes>
       <w>240</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>*Exemption_Off_Duty_Reasons*
+    <panel_attributes>*Off_Duty_Reasons*
 --
 id: int, primary
 --
@@ -378,10 +382,10 @@ reason: string</panel_attributes>
       <x>940</x>
       <y>770</y>
       <w>140</w>
-      <h>140</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;120.0;70.0;120.0;70.0;10.0;120.0;10.0</additional_attributes>
+    <additional_attributes>10.0;140.0;70.0;140.0;70.0;10.0;120.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -389,21 +393,21 @@ reason: string</panel_attributes>
       <x>50</x>
       <y>540</y>
       <w>780</w>
-      <h>330</h>
+      <h>370</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;310.0;390.0;310.0;390.0;230.0;730.0;230.0;730.0;10.0;760.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;10.0;350.0;620.0;350.0;620.0;230.0;730.0;230.0;730.0;10.0;760.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>660</x>
       <y>810</y>
-      <w>390</w>
+      <w>160</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;370.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -426,10 +430,10 @@ name: string</panel_attributes>
       <x>420</x>
       <y>90</y>
       <w>70</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;70.0;30.0;70.0;30.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;30.0;90.0;30.0;10.0;50.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -452,9 +456,36 @@ reason: string</panel_attributes>
       <x>420</x>
       <y>190</y>
       <w>760</w>
-      <h>170</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;150.0;610.0;150.0;610.0;10.0;740.0;10.0</additional_attributes>
+    <additional_attributes>10.0;180.0;610.0;180.0;610.0;10.0;740.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>650</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>*User*
+--
+id: int, primary
+--
+name: string
+--
+abbreviation: string
+--
+email: string, unique
+--
+dark_mode: bool
+--
+email_verified_at: Datetime
+--
+password: string
+--
+remember_token: string</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>

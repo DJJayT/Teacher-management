@@ -46,7 +46,7 @@ class sickStatsCalculationService
             ->get();
 
 
-        $totalSickDays = $this->calculateTotalSickDays($teachers->pluck('sickDays')->flatten(), $teachers);
+        $totalSickDays = $this->calculateTotalSickDays($teachers->pluck('sickDays')->flatten(), $teachers, $date);
 
         $stats = new stdClass();
         $stats->aboveA13 = $this->calculateStatsAboveA13($teachers, $totalSickDays);
@@ -200,13 +200,26 @@ class sickStatsCalculationService
      * Calculates the total amount of sick days for each teacher
      * @param \Illuminate\Support\Collection $sickDays
      * @param Collection $teachers
+     * @param Carbon $date
      * @return Collection
      */
-    private function calculateTotalSickDays(\Illuminate\Support\Collection $sickDays, Collection &$teachers): Collection
+    private function calculateTotalSickDays(\Illuminate\Support\Collection $sickDays, Collection &$teachers, Carbon $date): Collection
     {
         $teacherSickDays = new Collection();
-        $sickDays->each(function ($sickDay) use (&$teacherSickDays, &$teachers) {
-            $dayDifference = $sickDay->from->diffInDays($sickDay->until);
+        $sickDays->each(function ($sickDay) use (&$teacherSickDays, &$teachers, $date) {
+            if($sickDay->from->lessThan($date->clone()->startOfYear())) {
+                $from = $date->clone()->startOfYear();
+            } else {
+                $from = $sickDay->from;
+            }
+
+            if($sickDay->until->greaterThan($date->clone()->endOfYear())) {
+                $until = $date->clone()->endOfYear();
+            } else {
+                $until = $sickDay->until;
+            }
+
+            $dayDifference = $from->diffInDays($until);
             $teacherSickDays->put($sickDay->teacher->id,
                 $teacherSickDays->get($sickDay->teacher->id, 0) + $dayDifference);
 
