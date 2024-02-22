@@ -29,11 +29,11 @@
                     </p>
                 </div>
                 <div class="offDutyDayActions">
-                    <button type="button" class="btn btn-primary editOffDutyDayButton" data-modalId="13"
+                    <button type="button" class="btn btn-primary editOffDutyDayButton my-1" data-modalId="13"
                             data-offDutyDayId="{{ $offDutyDay->id }}">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button type="button" class="btn btn-danger deleteOffDutyDayButton" data-modalId="1"
+                    <button type="button" class="btn btn-danger deleteOffDutyDayButton my-1" data-modalId="1"
                             data-offDutyDayId="{{ $offDutyDay->id }}">
                         <i class="bi bi-trash"></i>
                     </button>

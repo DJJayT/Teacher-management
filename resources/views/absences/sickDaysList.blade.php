@@ -50,11 +50,11 @@
                     </p>
                 </div>
                 <div class="sickDayActions">
-                    <button type="button" class="btn btn-primary editSickDayButton" data-modalId="11"
+                    <button type="button" class="btn btn-primary editSickDayButton my-1" data-modalId="11"
                             data-sickDayId="{{ $sickDay->id }}">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button type="button" class="btn btn-danger deleteSickDayButton" data-modalId="1"
+                    <button type="button" class="btn btn-danger deleteSickDayButton my-1" data-modalId="1"
                             data-sickDayId="{{ $sickDay->id }}">
                         <i class="bi bi-trash"></i>
                     </button>

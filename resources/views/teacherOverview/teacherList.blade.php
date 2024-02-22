@@ -25,13 +25,13 @@
                 @endif
             </div>
             <div class="managingButtons">
-                <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info">
+                <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info my-1">
                     <i class="bi bi-clipboard-check"></i> {{ __('Trainings') }}
                 </a>
-                <a href="{{ route('teacher.absences', ['id' => $teacher->id]) }}" class="btn btn-info">
+                <a href="{{ route('teacher.absences', ['id' => $teacher->id]) }}" class="btn btn-info my-1">
                     <i class="bi bi-clock"></i> {{ __('Absences') }}
                 </a>
-                <button type="button" class="btn btn-primary editTeacherButton"
+                <button type="button" class="btn btn-primary editTeacherButton my-1"
                         data-modalId="2" data-teacherId="{{ $teacher->id }}">
                     <i class="bi bi-pencil-fill"></i>
                 </button>

@@ -34,13 +34,13 @@
                     </div>
                     <div class="managingButtons">
                         @can('user.edit')
-                            <button type="button" class="btn btn-primary editUserButton"
+                            <button type="button" class="btn btn-primary editUserButton my-1"
                                     data-modalId="5" data-userId="{{ $user->id }}">
                                 <i class="bi bi-pencil-fill"></i> {{ __('Edit') }}
                             </button>
                         @endcan
                         @can('user.delete')
-                            <button type="button" class="btn btn-danger deleteUserButton"
+                            <button type="button" class="btn btn-danger deleteUserButton my-1"
                                     data-modalId="1" data-userId="{{ $user->id }}">
                                 <i class="bi bi-trash-fill"></i> {{ __('Delete') }}
                             </button>
