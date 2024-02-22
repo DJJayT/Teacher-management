@@ -23,7 +23,7 @@
     <div class="row mb-2">
         <ul class="list-group mt-5">
             @foreach($users as $user)
-                <li class="list-group-item d-flex justify-content-between">
+                <li class="list-group-item d-flex flex-column flex-md-row justify-content-between">
                     <div class="userInfos">
                         <p class="m-0 name">
                             {{ $user->name }} ({{ $user->abbreviation }})
@@ -32,7 +32,7 @@
                             {{ __(ucfirst($user->getRoleName())) }}
                         </p>
                     </div>
-                    <div class="managingButtons ms-2">
+                    <div class="managingButtons">
                         @can('user.edit')
                             <button type="button" class="btn btn-primary editUserButton"
                                     data-modalId="5" data-userId="{{ $user->id }}">

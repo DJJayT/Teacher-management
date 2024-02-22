@@ -1,6 +1,6 @@
 <ul class="list-group mt-5 mb-2">
     @foreach($teachers as $teacher)
-        <li class="list-group-item d-flex justify-content-between">
+        <li class="list-group-item d-flex flex-column flex-lg-row justify-content-between">
             <div class="teacherInfos">
                 <p class="m-0 name">
                     {{ $teacher->lastname }}, {{ $teacher->firstname }}
@@ -24,7 +24,7 @@
                     </p>
                 @endif
             </div>
-            <div class="managingButtons ms-2">
+            <div class="managingButtons">
                 <a href="{{ route('teacher.trainings', ['id' => $teacher->id]) }}" class="btn btn-info">
                     <i class="bi bi-clipboard-check"></i> {{ __('Trainings') }}
                 </a>
