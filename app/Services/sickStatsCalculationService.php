@@ -45,13 +45,13 @@ class sickStatsCalculationService
             ->with('gender')
             ->get();
 
-
         $totalSickDays = $this->calculateTotalSickDays($teachers->pluck('sickDays')->flatten(), $teachers, $date);
 
         $stats = new stdClass();
         $stats->aboveA13 = $this->calculateStatsAboveA13($teachers, $totalSickDays);
         $stats->a9ToA12 = $this->calculateStatsA9ToA12($teachers, $totalSickDays);
         $stats->belowA9 = $this->calculateStatsBelowA9($teachers, $totalSickDays);
+
         return $stats;
     }
 
@@ -83,7 +83,8 @@ class sickStatsCalculationService
     public function calculateStatsA9ToA12(Collection $teachers, Collection $totalSickDays): stdClass
     {
         $teachersToCalculate = $teachers->filter(function ($teacher) {
-            return (int)substr($teacher->salaryGrade->name, 1, 2) >= 13;
+            return (int)substr($teacher->salaryGrade->name, 1, 2) >= 9 &&
+                (int)substr($teacher->salaryGrade->name, 1, 2) <= 12;
         });
 
         $sickTeachers = $teachersToCalculate->filter(function ($teacher) {
@@ -182,7 +183,7 @@ class sickStatsCalculationService
     private function calculateSickDayGroup(Collection $sickTeachers, Collection $totalSickDays): array
     {
         $shortTimeSickTeachers = $sickTeachers->filter(function ($teacher) use ($totalSickDays) {
-            return $totalSickDays->get($teacher->id) <= 3;
+            return $totalSickDays->get($teacher->id) <= 3 && $totalSickDays->get($teacher->id) > 0;
         });
 
         $longTimeSickTeachers = $sickTeachers->filter(function ($teacher) use ($totalSickDays) {
@@ -203,25 +204,36 @@ class sickStatsCalculationService
      * @param Carbon $date
      * @return Collection
      */
-    private function calculateTotalSickDays(\Illuminate\Support\Collection $sickDays, Collection &$teachers, Carbon $date): Collection
-    {
+    private function calculateTotalSickDays(
+        \Illuminate\Support\Collection $sickDays,
+        Collection &$teachers,
+        Carbon $date
+    ): Collection {
         $teacherSickDays = new Collection();
         $sickDays->each(function ($sickDay) use (&$teacherSickDays, &$teachers, $date) {
-            if($sickDay->from->lessThan($date->clone()->startOfYear())) {
+            if ($sickDay->from->greaterThan($date->clone()->endOfYear()) || $sickDay->until->lessThan($date->clone()->startOfYear())) {
+                return;
+            }
+
+            if ($sickDay->from->lessThan($date->clone()->startOfYear())) {
                 $from = $date->clone()->startOfYear();
             } else {
                 $from = $sickDay->from;
             }
 
-            if($sickDay->until->greaterThan($date->clone()->endOfYear())) {
+            if ($sickDay->until->greaterThan($date->clone()->endOfYear())) {
                 $until = $date->clone()->endOfYear();
             } else {
                 $until = $sickDay->until;
             }
 
             $dayDifference = $from->diffInDays($until);
-            $teacherSickDays->put($sickDay->teacher->id,
-                $teacherSickDays->get($sickDay->teacher->id, 0) + $dayDifference);
+
+            $teacherSickDays->put(
+                $sickDay->teacher->id,
+                $teacherSickDays->get($sickDay->teacher->id, 0
+                ) + $dayDifference
+            );
 
             if (!$teachers->contains($sickDay->teacher)) {
                 $teachers->put($sickDay->teacher->id, $sickDay->teacher);
