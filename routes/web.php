@@ -26,7 +26,7 @@ Route::group([
     Route::get('/login', [LoginController::class, 'index'])
         ->name('login');
     Route::post('/login', [LoginController::class, 'postLogin'])
-        ->name('login');
+        ->name('postLogin');
 });
 
 Route::group([

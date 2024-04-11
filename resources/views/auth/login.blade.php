@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ __('Login') }}</h5>
                 @include('alerts.default')
-                <form action="{{ route('login') }}" method="post">
+                <form action="{{ route('postLogin') }}" method="post">
                     @csrf
                     <div class="mb-2">
                         <label for="abbreviation" class="form-label">{{ __('Abbreviation') }}</label>
