@@ -24,18 +24,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sickToday = TeacherSickTime::where('from', '<=', Carbon::now())
-            ->where('until', '>=', Carbon::now())
+        $sickToday = TeacherSickTime::where('from', '<=', Carbon::now()->endOfDay())
+            ->where('until', '>=', Carbon::now()->startOfDay())
             ->with('teacher')
             ->get();
 
-        $offDutyToday = TeacherOffDuty::where('from', '<=', Carbon::now())
-            ->where('until', '>=', Carbon::now())
+        $offDutyToday = TeacherOffDuty::where('from', '<=', Carbon::now()->endOfDay())
+            ->where('until', '>=', Carbon::now()->startOfDay())
             ->with('teacher')
             ->get();
 
-        $trainingToday = TeacherTraining::where('from', '<=', Carbon::now())
-            ->where('until', '>=', Carbon::now())
+        $trainingToday = TeacherTraining::where('from', '<=', Carbon::now()->endOfDay())
+            ->where('until', '>=', Carbon::now()->startOfDay())
             ->with('teacher')
             ->get();
 
