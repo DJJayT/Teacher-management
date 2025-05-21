@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->date('until');
             $table->integer('teaching_days');
             $table->foreignId('reason_type_id')
-                ->constrained('exemption_off_duty_reasons')
+                ->constrained('off_duty_reasons')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
             $table->timestamps();
