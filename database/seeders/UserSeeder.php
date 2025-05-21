@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'name' => 'Jason',
             'email' => 'kontakt@djja.yt',
             'password' => Hash::make('password'),
+            'abbreviation' => 1,
         ];
 
         $users[] = [
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             'name' => 'Eric',
             'email' => 'info@ericevanengelhardt.ovh',
             'password' => Hash::make('password'),
+            'abbreviation' => 1,
         ];
 
         $users[] = [
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             'name' => 'Christine',
             'email' => 'dragonica.minecraft@web.de',
             'password' => Hash::make('password'),
+            'abbreviation' => 1,
         ];
 
         User::insert($users);
